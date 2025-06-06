@@ -1,5 +1,6 @@
 ﻿using Service.ViewModels.Blog;
 using Service.ViewModels.City;
+using Service.ViewModels.Hotel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

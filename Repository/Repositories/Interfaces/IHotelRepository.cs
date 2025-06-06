@@ -9,5 +9,7 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IHotelRepository : IBaseRepository<Hotel>
     {
+        Task<IEnumerable<Hotel>> GetAllHotel();
+        Task<Hotel> GetHotelById(int id);
     }
 }

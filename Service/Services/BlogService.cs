@@ -25,9 +25,6 @@ namespace Service.Services
                 Image = x.Image,
                 Title = x.Title,
                 Content = string.Join(" ",x.Content.Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Take(46)) + " ...",
-                CreateDate = DateTime.Now,
-                AuthorImage = x.AuthorImage,
-                AuthorName = x.AuthorName,
                 CategoryName = x.BlogCategory.Name
             });
         }

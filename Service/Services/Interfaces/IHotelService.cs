@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.ViewModels.Hotel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Service.Services.Interfaces
 {
     public interface IHotelService
     {
+        Task<IEnumerable<HotelVM>> GetAllHotel();
+        Task<HotelDetailVM> GetHotelDetail(int id);
     }
 }

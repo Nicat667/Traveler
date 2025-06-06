@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<HotelVM>
+@{
     ViewData["Title"] = "Hotels";
 }
 @section css {
@@ -241,186 +242,50 @@
                     <div class="hotels">
                         <div class="row forHotels">
 
-                            <div class="col-lg-6 col-md-6 item" data-price="195">
-                                <a href="./hotelDetail.html">
-                                    <div class="image">
-                                        <img src="~/assets/images/hotels/feature-11.webp">
-                                    </div>
+                            @{
+                                foreach(var hotel in Model)
+                                {
+                                    <div class="col-lg-6 col-md-6 item" data-price="@hotel.MinPrice">
+                                        <a asp-controller="Hotel" asp-action="Detail" asp-route-id="@hotel.Id">
+                                            <div class="image">
+                                                <img src="~/assets/images/hotels/@hotel.MainImage">
+                                            </div>
 
-                                    <div class="contain">
-                                        <div class="stars">
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                        </div>
-                                        <div class="location">
-                                            <p>The Plaza Hotel</p>
-                                            <span>768 5th Ave, New York, NY10019</span>
-                                        </div>
-                                        <div class="rating">
-                                            <div class="rate">
-                                                <span>5</span>
-                                                <span>/</span>
-                                                <span>5</span>
+                                            <div class="contain">
+                                                <div class="stars">
+                                                    
+                                                    @{
+                                                        for(int i = 1; i <= hotel.StarCount; i++)
+                                                        {
+                                                            <span><i class="fa-solid fa-star"></i></span>
+                                                        }
+                                                    }
+                                                </div>
+                                                <div class="location">
+                                                    <p>@hotel.Name</p>
+                                                    <span>@hotel.Address</span>
+                                                </div>
+                                                <div class="rating">
+                                                    <div class="rate">
+                                                        <span>@hotel.Rate</span>
+                                                        <span>/</span>
+                                                        <span>5</span>
+                                                    </div>
+                                                    <div class="count">
+                                                        <span>(@hotel.CommentCount Reviews)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="text">From:</span>
+                                                    <span class="value">$ @hotel.MinPrice</span>
+                                                    <span class="text">/night</span>
+                                                </div>
                                             </div>
-                                            <div class="count">
-                                                <span>(3 Reviews)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <span class="text">From:</span>
-                                            <span class="value">$ 195.00</span>
-                                            <span class="text">/night</span>
-                                        </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 item" data-price="196">
-                                <a href="x">
-                                    <div class="image">
-                                        <img src="~/assets/images/hotels/feature-11.webp">
-                                    </div>
+                                }
+                            }
 
-                                    <div class="contain">
-                                        <div class="stars">
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                        </div>
-                                        <div class="location">
-                                            <p>the Ritz-Carlton, Chicago</p>
-                                            <span>160 E Pearson St, Chicago, IL 60611</span>
-                                        </div>
-                                        <div class="rating">
-                                            <div class="rate">
-                                                <span>5</span>
-                                                <span>/</span>
-                                                <span>5</span>
-                                            </div>
-                                            <div class="count">
-                                                <span>(3 Reviews)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <span class="text">From:</span>
-                                            <span class="value">$ 196.00</span>
-                                            <span class="text">/night</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 item" data-price="197">
-                                <a href="x">
-                                    <div class="image">
-                                        <img src="~/assets/images/hotels/feature-11.webp">
-                                    </div>
-
-                                    <div class="contain">
-                                        <div class="stars">
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                        </div>
-                                        <div class="location">
-                                            <p>Crowne Plaza Hotel</p>
-                                            <span>New Jersey</span>
-                                        </div>
-                                        <div class="rating">
-                                            <div class="rate">
-                                                <span>5</span>
-                                                <span>/</span>
-                                                <span>5</span>
-                                            </div>
-                                            <div class="count">
-                                                <span>(3 Reviews)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <span class="text">From:</span>
-                                            <span class="value">$ 197.00</span>
-                                            <span class="text">/night</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 item" data-price="198">
-                                <a href="x">
-                                    <div class="image">
-                                        <img src="~/assets/images/hotels/feature-11.webp">
-                                    </div>
-
-                                    <div class="contain">
-                                        <div class="stars">
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                        </div>
-                                        <div class="location">
-                                            <p>Fairmont San Francisco</p>
-                                            <span>950 Mason St, San Francisco, CA 94108</span>
-                                        </div>
-                                        <div class="rating">
-                                            <div class="rate">
-                                                <span>5</span>
-                                                <span>/</span>
-                                                <span>5</span>
-                                            </div>
-                                            <div class="count">
-                                                <span>(3 Reviews)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <span class="text">From:</span>
-                                            <span class="value">$ 198.00</span>
-                                            <span class="text">/night</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 item" data-price="199">
-                                <a href="x">
-                                    <div class="image">
-                                        <img src="~/assets/images/hotels/feature-11.webp">
-                                    </div>
-
-                                    <div class="contain">
-                                        <div class="stars">
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                            <span><i class="fa-solid fa-star"></i></span>
-                                        </div>
-                                        <div class="location">
-                                            <p>Four Season Hotel Seattle</p>
-                                            <span>99 Union St, Seattle, WA 98101</span>
-                                        </div>
-                                        <div class="rating">
-                                            <div class="rate">
-                                                <span>5</span>
-                                                <span>/</span>
-                                                <span>5</span>
-                                            </div>
-                                            <div class="count">
-                                                <span>(3 Reviews)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <span class="text">From:</span>
-                                            <span class="value">$ 199.00</span>
-                                            <span class="text">/night</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
 
                         </div>
                         <nav aria-label="Custom page navigation">

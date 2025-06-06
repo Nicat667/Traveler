@@ -21,10 +21,10 @@ namespace Domain.Models
         public bool SpaSauna { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Room> Rooms { get; set; }
-        public ICollection<HotelImage> HotelImages { get; set; }
-        public ICollection<WishList> WishLists { get; set; }
+        public ICollection<Comment> Comments = new List<Comment>();
+        public ICollection<Room> Rooms = new List<Room>();
+        public ICollection<HotelImage> HotelImages = new List<HotelImage>();
+        public ICollection<WishList> WishLists = new List<WishList>();
 
     }
 }

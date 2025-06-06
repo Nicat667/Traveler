@@ -18,7 +18,7 @@ namespace Domain.Models
         public int BedCount { get; set; }
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
-        public ICollection<RoomImage> RoomImages { get; set; }
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<RoomImage> RoomImages = new List<RoomImage>();
+        public ICollection<Reservation> Reservations = new List<Reservation>();
     }
 }

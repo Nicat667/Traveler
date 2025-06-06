@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interfaces;
 using System;
@@ -14,7 +15,17 @@ namespace Repository.Repositories
         private readonly AppDbContext _context;
         public HotelRepository(AppDbContext context) : base(context)
         {
+            _context = context;
+        }
 
+        public async Task<IEnumerable<Hotel>> GetAllHotel()
+        {
+            return await _context.Hotels.Include(m=>m.Rooms).ThenInclude(mx=>mx.RoomImages).Include(m=>m.Comments).Include(m=>m.HotelImages).ToListAsync();
+        }
+
+        public async Task<Hotel> GetHotelById(int id)
+        {
+            return await _context.Hotels.Include(m => m.Rooms).ThenInclude(mx => mx.RoomImages).Include(m => m.Comments).Include(m => m.HotelImages).FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }
