@@ -1,4 +1,5 @@
 ﻿
+using Service.ViewModels.Blog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Service.Services.Interfaces
 {
     public interface IBlogService
     {
-
+        Task<IEnumerable<BlogVM>> GetAllWithCategories();
     }
 }

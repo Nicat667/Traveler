@@ -343,36 +343,35 @@
                 <div class="carousel-track-wrapper">
                     <div class="carousel-track">
 
-                        <a href="#" class="blog-link">
-                            <div class="x">
-                                <div class="img">
-                                    <img src="~/assets/images/home/Rectangle-3-600x400.jpg" alt="Blog image" />
-                                </div>
-                                <div class="blog-container">
-                                    <div class="category">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Travel</span>
+                        @{
+                            foreach(var blog in Model.Blogs)
+                            {
+                                <a href="#" class="blog-link">
+                                    <div class="x">
+                                        <div class="img">
+                                            <img src="~/assets/images/home/@blog.Image" alt="Blog image" />
+                                        </div>
+                                        <div class="blog-container">
+                                            <div class="category">
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>@blog.CategoryName.</span>
+                                            </div>
+                                            <div class="head">
+                                                <p>@blog.Title</p>
+                                            </div>
+                                            <div class="content">
+                                                <p>
+                                                    @blog.Content
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="head">
-                                        <p>Meet the Steve Jobs of the Travel Industry</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
-                                            fermentum
-                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
-                                            mi, morbi
-                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
-                                            viverra leo
-                                            duis. Odio consectetur enim, massa nibh euismod eget
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                                </a>
+                            }
+                        }
 
 
-                        <a href="#" class="blog-link">
+                        @* <a href="#" class="blog-link">
                             <div class="x">
                                 <div class="img">
                                     <img src="~/assets/images/home/Rectangle-3-600x400-3.png" alt="Blog image" />
@@ -560,7 +559,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </a> *@
 
                     </div>
                 </div>

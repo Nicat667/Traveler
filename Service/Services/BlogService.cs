@@ -1,5 +1,6 @@
 ﻿using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
+using Service.ViewModels.Blog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,21 @@ namespace Service.Services
         public BlogService(IBlogRepository blogRepository)
         {
             _blogRepository = blogRepository;
+        }
+
+        public async Task<IEnumerable<BlogVM>> GetAllWithCategories()
+        {
+            var datas = await _blogRepository.GetAllWithCategories();
+            return datas.Select(x => new BlogVM
+            {
+                Image = x.Image,
+                Title = x.Title,
+                Content = string.Join(" ",x.Content.Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Take(46)) + " ...",
+                CreateDate = DateTime.Now,
+                AuthorImage = x.AuthorImage,
+                AuthorName = x.AuthorName,
+                CategoryName = x.BlogCategory.Name
+            });
         }
     }
 }

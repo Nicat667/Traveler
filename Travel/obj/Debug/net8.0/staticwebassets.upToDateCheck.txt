@@ -28,9 +28,9 @@ wwwroot\assets\images\about\team5-600x700.webp
 wwwroot\assets\images\about\team6-600x700.png
 wwwroot\assets\images\about\team7-600x700.png
 wwwroot\assets\images\about\team8-600x700.webp
-wwwroot\assets\images\blogs\32.jpg
 wwwroot\assets\images\blogs\practicando-stand-up-paddle-algarve-870x500.jpg
 wwwroot\assets\images\home\14-travel-instagram.w710.h473.2x-870x500-1-600x400.jpg
+wwwroot\assets\images\home\32.jpg
 wwwroot\assets\images\home\bannermix-min.webp
 wwwroot\assets\images\home\banner-search-form-min.png
 wwwroot\assets\images\home\blackLogo.svg

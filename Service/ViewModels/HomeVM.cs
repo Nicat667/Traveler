@@ -1,4 +1,5 @@
-﻿using Service.ViewModels.City;
+﻿using Service.ViewModels.Blog;
+using Service.ViewModels.City;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Service.ViewModels
     public class HomeVM
     {
         public IEnumerable<CityVM> Cities { get; set; }
+        public IEnumerable<BlogVM> Blogs { get; set; }
     }
 }

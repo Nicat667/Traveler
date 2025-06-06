@@ -9,9 +9,11 @@ namespace Travel.Controllers
     public class HomeController : Controller
     {
         private readonly ICityService _cityService;
-        public HomeController(ICityService cityService)
+        private readonly IBlogService _blogService;
+        public HomeController(ICityService cityService, IBlogService blogService)
         {
             _cityService = cityService;
+            _blogService = blogService;
         }
 
         public async Task<IActionResult> Index()
@@ -19,6 +21,7 @@ namespace Travel.Controllers
             HomeVM homeVM = new HomeVM()
             {
                 Cities = await _cityService.GetAllWihHotelsAsync(),
+                Blogs = await _blogService.GetAllWithCategories(),
             };
             
             return View(homeVM);
