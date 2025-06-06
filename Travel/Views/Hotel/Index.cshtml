@@ -1,0 +1,461 @@
+﻿@{
+    ViewData["Title"] = "Hotels";
+}
+@section css {
+    <link rel="stylesheet" href="~/assets/css/Hotels/style.css">
+}
+<main>
+    <section id="nav"
+             style="background-image: url('assets/images/home/banner-search-form-min.png'); background-size: cover;">
+        <div class="navbar">
+            <div class="cus-container">
+                <div class="row align-items-center line">
+                    <div class="col-md-2 left">
+                        <div class="menuIcon d-none">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div class="logo">
+                            <a asp-controller="Home" asp-action="Index">
+                                <picture>
+                                    <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
+                                    <img class="logo" src="~/assets/images/home/Traveler-logo.svg"
+                                         alt="Traveler Logo">
+                                </picture>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-7 midd">
+                        <ul>
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Hotel" asp-action="Index">Hotels</a>
+                            </li>
+                            <li>
+                                <a asp-controller="About" asp-action="Index">About</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Blog" asp-action="Index">Blog</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Contact" asp-action="Index">Contact</a>
+                            </li>
+                            <li>
+                                <a asp-controller="FAQ" asp-action="Index">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 right">
+                        <div class="currency">
+                            <span id="currency">EUR</span>
+                            <i class="fa-solid fa-angle-down curicon"></i>
+                            <i class="fa-solid fa-angle-up curicon_ d-none"></i>
+                        </div>
+                        <div class="basket">
+                            <div class="circle">
+                                <i class="fa-regular fa-heart like-iconn"></i>
+                            </div>
+                        </div>
+                        <div class="profile">
+                            <div class="circle">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controller-name">
+            <span class="home">Home</span>
+            <span class="icon"><i class="fa-solid fa-circle"></i></span>
+            <span class="name">Blog</span>
+        </div>
+        <div class="currency-tab d-none">
+            <ul>
+                <li class="li">
+                    USD
+                </li>
+                <li class="li">
+                    EUR
+                </li>
+                <li class="li">
+                    AZN
+                </li>
+            </ul>
+        </div>
+        <div class="basket-tab d-none">
+
+            <div class="contain">
+                <p class="title">Your Cart</p>
+                <hr>
+                <ul>
+                    <li>
+                        <span>Your cart is empty</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="login d-none">
+            <div class="uper">
+                <span><i class="fa-solid fa-xmark"></i></span>
+                <ul>
+                    <li>
+                        <p class="in active">Log in</p>
+                    </li>
+                    <li>
+                        <p class="up">Register</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contain signin">
+                <p>Sign in to your account</p>
+
+                <form method="post" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Enter email or username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass mt-3" id="exampleInputPassword1"
+                               placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Log in</button>
+                    <div class="visible d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis ">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                </form>
+                <div class="forget">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+            <div class="contain signup d-none">
+                <p>Create an account</p>
+
+                <form method="post" action="" class="register">
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass-register mt-3" id="exampleInputPassword1"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass-register-conf mt-3"
+                               id="exampleInputPassword1" placeholder="Confirm password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+                    <div class="visible-register d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis-register">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                    <div class="visible-register2 d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis-register2">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="forgetpass d-none">
+            <div class="contain">
+                <div class="head">
+                    <p>Reset Password</p>
+                </div>
+                <div class="mid">
+                    <p>
+                        Enter the e-mail address associated with the account. <br>
+                        We'll e-mail a link to reset your password.
+                    </p>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Email">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Send Reset Link</button>
+                </form>
+                <div class="end">
+                    <span class="backTo">Back to Log in</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="move-up">
+        <i class="fa-solid fa-angle-up"></i>
+    </div>
+
+    <section id="hotels">
+        <div class="cus-container">
+            <div class="filter">
+                <span class="count">24 hotels found</span>
+                <div class="sort">
+                    <span>Sort</span>
+                    <span class="icon down2"><i class="fa-solid fa-angle-down"></i></span>
+                    <span class="icon up2 d-none"><i class="fa-solid fa-angle-up"></i></span>
+                </div>
+            </div>
+            <div class="sort-tab d-none">
+                <div class="contain">
+                    <div class="price">
+                        <p class="p">Price</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                   id="flexRadioDefault1" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Low to High
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                   id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                High to Low
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 left">
+
+                    <div class="hotels">
+                        <div class="row forHotels">
+
+                            <div class="col-lg-6 col-md-6 item" data-price="195">
+                                <a href="./hotelDetail.html">
+                                    <div class="image">
+                                        <img src="~/assets/images/hotels/feature-11.webp">
+                                    </div>
+
+                                    <div class="contain">
+                                        <div class="stars">
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="location">
+                                            <p>The Plaza Hotel</p>
+                                            <span>768 5th Ave, New York, NY10019</span>
+                                        </div>
+                                        <div class="rating">
+                                            <div class="rate">
+                                                <span>5</span>
+                                                <span>/</span>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>(3 Reviews)</span>
+                                            </div>
+                                        </div>
+                                        <div class="price">
+                                            <span class="text">From:</span>
+                                            <span class="value">$ 195.00</span>
+                                            <span class="text">/night</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 item" data-price="196">
+                                <a href="x">
+                                    <div class="image">
+                                        <img src="~/assets/images/hotels/feature-11.webp">
+                                    </div>
+
+                                    <div class="contain">
+                                        <div class="stars">
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="location">
+                                            <p>the Ritz-Carlton, Chicago</p>
+                                            <span>160 E Pearson St, Chicago, IL 60611</span>
+                                        </div>
+                                        <div class="rating">
+                                            <div class="rate">
+                                                <span>5</span>
+                                                <span>/</span>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>(3 Reviews)</span>
+                                            </div>
+                                        </div>
+                                        <div class="price">
+                                            <span class="text">From:</span>
+                                            <span class="value">$ 196.00</span>
+                                            <span class="text">/night</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 item" data-price="197">
+                                <a href="x">
+                                    <div class="image">
+                                        <img src="~/assets/images/hotels/feature-11.webp">
+                                    </div>
+
+                                    <div class="contain">
+                                        <div class="stars">
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="location">
+                                            <p>Crowne Plaza Hotel</p>
+                                            <span>New Jersey</span>
+                                        </div>
+                                        <div class="rating">
+                                            <div class="rate">
+                                                <span>5</span>
+                                                <span>/</span>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>(3 Reviews)</span>
+                                            </div>
+                                        </div>
+                                        <div class="price">
+                                            <span class="text">From:</span>
+                                            <span class="value">$ 197.00</span>
+                                            <span class="text">/night</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 item" data-price="198">
+                                <a href="x">
+                                    <div class="image">
+                                        <img src="~/assets/images/hotels/feature-11.webp">
+                                    </div>
+
+                                    <div class="contain">
+                                        <div class="stars">
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="location">
+                                            <p>Fairmont San Francisco</p>
+                                            <span>950 Mason St, San Francisco, CA 94108</span>
+                                        </div>
+                                        <div class="rating">
+                                            <div class="rate">
+                                                <span>5</span>
+                                                <span>/</span>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>(3 Reviews)</span>
+                                            </div>
+                                        </div>
+                                        <div class="price">
+                                            <span class="text">From:</span>
+                                            <span class="value">$ 198.00</span>
+                                            <span class="text">/night</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 item" data-price="199">
+                                <a href="x">
+                                    <div class="image">
+                                        <img src="~/assets/images/hotels/feature-11.webp">
+                                    </div>
+
+                                    <div class="contain">
+                                        <div class="stars">
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                            <span><i class="fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="location">
+                                            <p>Four Season Hotel Seattle</p>
+                                            <span>99 Union St, Seattle, WA 98101</span>
+                                        </div>
+                                        <div class="rating">
+                                            <div class="rate">
+                                                <span>5</span>
+                                                <span>/</span>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>(3 Reviews)</span>
+                                            </div>
+                                        </div>
+                                        <div class="price">
+                                            <span class="text">From:</span>
+                                            <span class="value">$ 199.00</span>
+                                            <span class="text">/night</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <nav aria-label="Custom page navigation">
+                            <ul class="pagination justify-content-center" id="custom-pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" id="prev-page" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                <li class="page-item active">
+                                    <span class="page-link" id="current-page">1</span>
+                                </li>
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" id="next-page" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="map">
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+@section js {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGEyKiDCVY0ACQfUFlNGsvlW9QJF-JCmc&map_ids=b559224a8cff171a769dc502&libraries=marker&callback=initMap" async defer></script>
+    <script src="~/assets/js/Hotels/script.js"></script>
+}
