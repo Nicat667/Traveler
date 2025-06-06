@@ -13,3 +13,6 @@ C:\Users\Nicat\Desktop\MVC\Travel\Repository\obj\Debug\net8.0\Repository.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Repository\obj\Debug\net8.0\refint\Repository.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Repository\obj\Debug\net8.0\Repository.pdb
 C:\Users\Nicat\Desktop\MVC\Travel\Repository\obj\Debug\net8.0\ref\Repository.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Repository\bin\Debug\net8.0\Repository.runtimeconfig.json
+C:\Users\Nicat\Desktop\MVC\Travel\Repository\obj\Debug\net8.0\Repository.sourcelink.json
+C:\Users\Nicat\Desktop\MVC\Travel\Repository\obj\Debug\net8.0\Repository.genruntimeconfig.cache
