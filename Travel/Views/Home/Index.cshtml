@@ -1,8 +1,670 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@section css {
+    <link rel="stylesheet" href="~/assets/css/Home/style.css">
+}
+<main>
+    <section id="nav" style="background-image: url('assets/images/home/bannermix-min.webp'); background-size: cover; height: 502px">
+        <div class="navbar">
+            <div class="cus-container">
+                <div class="row align-items-center line">
+                    <div class="col-md-2 left">
+                        <div class="menuIcon d-none">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div class="logo">
+                            <a asp-controller="Home" asp-action="Index">
+                                <picture>
+                                    <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
+                                    <img class="logo" src="~/assets/images/home/Traveler-logo.svg"
+                                         alt="Traveler Logo">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+                                </picture>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-7 midd">
+                        <ul>
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Hotel" asp-action="Index">Hotels</a>
+                            </li>
+                            <li>
+                                <a asp-controller="About" asp-action="Index">About</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Blog" asp-action="Index">Blog</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Contact" asp-action="Index">Contact</a>
+                            </li>
+                            <li>
+                                <a asp-controller="FAQ" asp-action="Index">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 right">
+                        <div class="currency">
+                            <span id="currency">EUR</span>
+                            <i class="fa-solid fa-angle-down curicon"></i>
+                            <i class="fa-solid fa-angle-up curicon_ d-none"></i>
+                        </div>
+                        <div class="basket">
+                            <div class="circle">
+                                <i class="fa-regular fa-heart like-iconn"></i>
+                            </div>
+                        </div>
+                        <div class="profile">
+                            <div class="circle">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="currency-tab d-none">
+            <ul>
+                <li class="li">
+                    USD
+                </li>
+                <li class="li">
+                    EUR
+                </li>
+                <li class="li">
+                    AZN
+                </li>
+            </ul>
+        </div>
+        <div class="basket-tab d-none">
+
+            <div class="contain">
+                <p class="title">Your Cart</p>
+                <hr>
+                <ul>
+                    <li>
+                        <span>Your cart is empty</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="login d-none">
+            <div class="uper">
+                <span><i class="fa-solid fa-xmark"></i></span>
+                <ul>
+                    <li>
+                        <p class="in active">Log in</p>
+                    </li>
+                    <li>
+                        <p class="up">Register</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contain signin">
+                <p>Sign in to your account</p>
+
+                <form method="post" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Enter email or username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass mt-3" id="exampleInputPassword1"
+                               placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Log in</button>
+                    <div class="visible d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis ">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                </form>
+                <div class="forget">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+            <div class="contain signup d-none">
+                <p>Create an account</p>
+
+                <form method="post" action="" class="register">
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass-register mt-3" id="exampleInputPassword1"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass-register-conf mt-3"
+                               id="exampleInputPassword1" placeholder="Confirm password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+                    <div class="visible-register d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis-register">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                    <div class="visible-register2 d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis-register2">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="forgetpass d-none">
+            <div class="contain">
+                <div class="head">
+                    <p>Reset Password</p>
+                </div>
+                <div class="mid">
+                    <p>
+                        Enter the e-mail address associated with the account. <br>
+                        We'll e-mail a link to reset your password.
+                    </p>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Email">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Send Reset Link</button>
+                </form>
+                <div class="end">
+                    <span class="backTo">Back to Log in</span>
+                </div>
+            </div>
+        </div>
+        <div class="custom-container">
+            <div class="headline">
+                <h1>Let the journey begin</h1>
+                <p>Get the best prices on 2,000,000+ properties, worldwide</p>
+            </div>
+            <div class="categories">
+                <span class="active">Hotels</span>
+                <span>Tours</span>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="hotel-input">
+        <form method="get" action="./hotels.html">
+            <div class="location">
+                <div class="a">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="b">
+                    <label>
+                        Location</lable>
+                        <input type="text" placeholder="Where are you going?">
+                </div>
+                <div class="line">
+                </div>
+            </div>
+            <div class="checkin-out">
+                <div class="calendar">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div class="start">
+                    <label>Check in</label>
+                    <input type="date">
+                </div>
+                <div class="toright">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+                <div class="end">
+                    <label>Check out</label>
+                    <input type="date">
+                </div>
+                <div class="line">
+                </div>
+            </div>
+            <div class="guest">
+                <div class="profile">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="count">
+                    <p class="head">Guests</p>
+                    <p class="number"><span>1</span> guest, <span>1</span> room</p>
+                </div>
+            </div>
+
+            <div class="guest-inc-dec d-none">
+                <div class="cus-container">
+                    <div class="guests">
+                        <div class="number-input">
+                            <span>Guests</span>
+                            <button type="button" class="decrement">−</button>
+                            <input type="number" min="0" max="100" step="1" value="1" />
+                            <button type="button" class="increment">+</button>
+                        </div>
+
+                    </div>
+                    <div class="rooms">
+                        <div class="number-input2">
+                            <span>Rooms</span>
+                            <button type="button" class="decrement2">−</button>
+                            <input type="number" min="0" max="100" step="1" value="1" />
+                            <button type="button" class="increment2">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="button">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="move-up">
+        <i class="fa-solid fa-angle-up"></i>
+    </div>
+
+    <section id="offers">
+        <div class="cus-container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6 item">
+                    <div class="bg-img">
+                        <img src="~/assets/images/home/Offer1.webp">
+                    </div>
+                </div>
+                <div class="col-md-6 item">
+                    <div class="bg-img">
+                        <img src="~/assets/images/home/Offer2.webp">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinations">
+        <div class="cus-container">
+            <div class="title">
+                <p>Destinations</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
+                    <a href="#">
+                        <div class="img"
+                             style="background-image: url('assets/images/home/California.jpg'); background-size: cover;">
+
+                            <div class="info">
+                                <p>California</p>
+                                <span class="left">14 Hotels</span>
+                                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                                <span>7 Tours</span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
+                    <a href="#">
+                        <div class="img"
+                             style="background-image: url('assets/images/home/New-York-City.jpg'); background-size: cover;">
+
+                            <div class="info">
+                                <p>New-York</p>
+                                <span class="left">14 Hotels</span>
+                                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                                <span>7 Tours</span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
+                    <a href="#">
+                        <div class="img"
+                             style="background-image: url('assets/images/home/New-Jersey.jpg'); background-size: cover;">
+
+                            <div class="info">
+                                <p>New-Jersey</p>
+                                <span class="left">14 Hotels</span>
+                                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                                <span>7 Tours</span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
+                    <a href="#">
+                        <div class="img"
+                             style="background-image: url('assets/images/home/Los-Angeles.jpg'); background-size: cover;">
+
+                            <div class="info">
+                                <p>Los-Angeles</p>
+                                <span class="left">14 Hotels</span>
+                                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                                <span>7 Tours</span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
+                    <a href="#">
+                        <div class="img"
+                             style="background-image: url('assets/images/home/San-Francisco.jpg'); background-size: cover;">
+
+                            <div class="info">
+                                <p>San-Francisco</p>
+                                <span class="left">14 Hotels</span>
+                                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                                <span>7 Tours</span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
+                    <a href="#">
+                        <div class="img"
+                             style="background-image: url('assets/images/home/Nevada_.jpg'); background-size: cover;">
+
+                            <div class="info">
+                                <p>Nevada</p>
+                                <span class="left">14 Hotels</span>
+                                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                                <span>7 Tours</span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blogs">
+        <div class="cus-container">
+            <div class="title">
+                <p>Stories, tips and guides</p>
+            </div>
+
+            <div class="carousel-container">
+                <button class="carousel-btn left">&lt;</button>
+
+                <div class="carousel-track-wrapper">
+                    <div class="carousel-track">
+
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/Rectangle-3-600x400.jpg" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/Rectangle-3-600x400-3.png" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/Rectangle-3-2-600x400.webp" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/Rectangle-3-1-600x400.webp" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/glaciar-vatnajokull-600x400.jpg" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/14-travel-instagram.w710.h473.2x-870x500-1-600x400.jpg" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/los_angeles_1-600x400.jpg" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="blog-link">
+                            <div class="x">
+                                <div class="img">
+                                    <img src="~/assets/images/home/cali_5-600x400.jpg" alt="Blog image" />
+                                </div>
+                                <div class="blog-container">
+                                    <div class="category">
+                                        <i class="fa-solid fa-circle"></i>
+                                        <span>Travel</span>
+                                    </div>
+                                    <div class="head">
+                                        <p>Meet the Steve Jobs of the Travel Industry</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            Vulputate amet magna bibendum et nibh at. Pretium tincidunt non turpis
+                                            fermentum
+                                            enim scelerisque nec enim odio. Eget mi commodo suscipit quam molestie
+                                            mi, morbi
+                                            lectus risus. Malesuada tristique bibendum cursus. Viverra sit diam ut
+                                            viverra leo
+                                            duis. Odio consectetur enim, massa nibh euismod eget
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <button class="carousel-btn right">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="subscribtion">
+        <div class="cus-container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 left"
+                     style="background-image: url('assets/images/home/subscribtion_Image.webp'); background-size: cover;">
+                </div>
+                <div class="col-lg-6 col-md-6 right">
+                    <div class="contain">
+                        <div class="head">
+                            <h1>Get special offers, and more from Traveler</h2>
+                        </div>
+                        <div class="mid">
+                            <p>Subscribe to see secret deals prices drop the moment you sign up!</p>
+                        </div>
+                        <div class="end">
+                            <form>
+                                <input type="email" class="mt-4" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="Email Address">
+                                <button type="submit" class="btn btn-primary submit">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+@section js {
+    <script src="~/assets/js/home/script.js"></script>
+}
