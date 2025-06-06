@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interfaces;
 using System;
@@ -17,5 +18,9 @@ namespace Repository.Repositories
             _context = context;
         }
 
+        public async Task<List<City>> GetAllWithHotels()
+        {
+            return await _context.City.Include(m => m.Hotels).ToListAsync();
+        }
     }
 }

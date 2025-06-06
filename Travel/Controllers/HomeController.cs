@@ -1,14 +1,27 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Service.Services.Interfaces;
+using Service.ViewModels;
 
 namespace Travel.Controllers
 {
     public class HomeController : Controller
     {
-        
-        public IActionResult Index()
+        private readonly ICityService _cityService;
+        public HomeController(ICityService cityService)
         {
-            return View();
+            _cityService = cityService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            HomeVM homeVM = new HomeVM()
+            {
+                Cities = await _cityService.GetAllWihHotelsAsync(),
+            };
+            
+            return View(homeVM);
         }
 
         

@@ -1,5 +1,6 @@
 ﻿using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
+using Service.ViewModels.City;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,19 @@ namespace Service.Services
         {
             _cityRepository = cityRepository;
         }
+
+        public async Task<IEnumerable<CityVM>> GetAllWihHotelsAsync()
+        {
+            var datas = await _cityRepository.GetAllWithHotels();
+            return datas.Select(x => new CityVM
+            {
+                Name = x.Name,
+                Image = x.Image,
+                HotelCount = x.Hotels.Count,
+            });
+        }
+
+        
+        
     }
 }
