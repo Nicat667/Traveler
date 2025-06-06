@@ -2,6 +2,8 @@ using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repository.Data;
+using Repository;
+using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 
+builder.Services.AddServiceLayer();
+builder.Services.AddRepositoryLayer();
 
 var app = builder.Build();
 
