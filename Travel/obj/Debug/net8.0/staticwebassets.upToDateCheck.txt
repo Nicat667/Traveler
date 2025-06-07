@@ -19,6 +19,9 @@ wwwroot\assets\css\HotelDetail\style.scss
 wwwroot\assets\css\Hotels\style.css
 wwwroot\assets\css\Hotels\style.css.map
 wwwroot\assets\css\Hotels\style.scss
+wwwroot\assets\css\roomDetail\style.css
+wwwroot\assets\css\roomDetail\style.css.map
+wwwroot\assets\css\roomDetail\style.scss
 wwwroot\assets\images\about\3246359-uhd_3840_2160_25fps.mp4
 wwwroot\assets\images\about\team1-600x700.png
 wwwroot\assets\images\about\team2-600x700.webp
@@ -125,3 +128,4 @@ wwwroot\assets\js\faq\script.js
 wwwroot\assets\js\home\script.js
 wwwroot\assets\js\hotelDetail\script.js
 wwwroot\assets\js\Hotels\script.js
+wwwroot\assets\js\roomDetail\script.js

@@ -1,4 +1,4 @@
-﻿using Domain.Enums;
+﻿using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service.ViewModels.Room
 {
-    public class RoomVM
+    public class RoomDetailVM
     {
         public int Id { get; set; }
         public string Type { get; set; }
@@ -16,6 +16,8 @@ namespace Service.ViewModels.Room
         public int GuestCapacity { get; set; }
         public int BedCount { get; set; }
         public int HotelId { get; set; }
-        public string MainImage { get; set; }
+        public string Description { get; set; }
+        public IEnumerable<RoomImage> Images { get; set; }
+        public IEnumerable<RoomVM> Options { get; set; }
     }
 }

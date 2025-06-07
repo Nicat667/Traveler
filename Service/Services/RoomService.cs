@@ -31,29 +31,48 @@ namespace Service.Services
             });
         }
 
-        public async Task<IEnumerable<RoomVM>> GetRoomsByHotelId(int hotelId)
+        public async Task<RoomDetailVM> GetRoomById(int id)
+        {
+            var data = await _roomRepository.GetRoomById(id);
+            var options = await GetRoomsByHotelId(data.HotelId);
+            return new RoomDetailVM
+            {
+                Area = data.Area,
+                Price = data.Price,
+                BedCount = data.BedCount,
+                GuestCapacity = data.GuestCapacity,
+                HotelId = data.HotelId,
+                Id = data.Id,
+                Images = data.RoomImages,
+                Type = data.Type.ToString(),
+                Description = data.Description,
+                Options = options.Where(r => r.HotelId == data.HotelId && r.Price != data.Price && r.Id != data.Id).ToList()
+            };
+        }
+
+        public async Task<List<RoomVM>> GetRoomsByHotelId(int hotelId)
         {
             var datas = await _roomRepository.GetRoomsByHotelId(hotelId);
 
-            var grouped = datas
-                .GroupBy(r => new { r.Type, r.GuestCapacity, r.BedCount })
+            return datas
+                .Select(m => new RoomVM
+                {
+                    Id = m.Id,
+                    Area = m.Area,
+                    Price = m.Price,
+                    BedCount = m.BedCount,
+                    GuestCapacity = m.GuestCapacity,
+                    HotelId = m.HotelId,
+                    MainImage = m.RoomImages.FirstOrDefault(m => m.IsMain).Name,
+                    Type = m.Type.ToString()
+                })
+                .GroupBy(r => new { r.GuestCapacity, r.BedCount }) 
                 .Select(group =>
                 {
-                    var room = group.OrderBy(r => r.Price).First(); 
-
-                    return new RoomVM
-                    {
-                        Area = room.Area,
-                        Price = room.Price,
-                        BedCount = room.BedCount,
-                        GuestCapacity = room.GuestCapacity,
-                        HotelId = room.HotelId,
-                        MainImage = room.RoomImages.FirstOrDefault(m => m.IsMain == true)?.Name,
-                        Type = room.Type.ToString()
-                    };
-                });
-
-            return grouped;
+                    var room = group.First();
+                    return room;
+                }).ToList();
         }
+
     }
 }

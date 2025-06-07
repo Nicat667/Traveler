@@ -11,5 +11,6 @@ namespace Repository.Repositories.Interfaces
     {
         Task<IEnumerable<Room>> GetAllRooms();
         Task<IEnumerable<Room>> GetRoomsByHotelId(int hotelId);
+        Task<Room> GetRoomById(int id);
     }
 }

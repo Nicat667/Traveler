@@ -23,6 +23,11 @@ namespace Repository.Repositories
             return await _context.Rooms.Include(m=>m.RoomImages).ToListAsync();
         }
 
+        public async Task<Room> GetRoomById(int id)
+        {
+            return await _context.Rooms.Include(m => m.RoomImages).FirstOrDefaultAsync(m => m.Id == id);
+        }
+
         public async Task<IEnumerable<Room>> GetRoomsByHotelId(int hotelId)
         {
             return await _context.Rooms.Include(m=>m.RoomImages).Where(m=>m.HotelId == hotelId).ToListAsync();
