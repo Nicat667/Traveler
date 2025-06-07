@@ -270,22 +270,45 @@ if (infoNode) {
 
 
 const roomInput = document.querySelector('.number-input2 input');
+const total = document.querySelector('.sum');
 
-// Update display
-function updateCounts() {
-  roomCountDisplay.textContent = roomInput.value;
+
+function calculateTotal() {
+    const roomContainer = document.querySelector(".book");
+    const pricePerNight = parseFloat(roomContainer.getAttribute("roomPrice"));
+    const startDate = new Date(document.getElementById("startDate").value);
+    const endDate = new Date(document.getElementById("endDate").value);
+    const roomCount = parseInt(roomContainer.querySelector("input[type='number']").value);
+    const totalSpan = roomContainer.querySelector(".sum");
+
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime()) || endDate <= startDate || roomCount <= 0) {
+        totalSpan.textContent = "$ 0.00";
+        return;
+    }
+
+    const millisecondsPerDay = 1000 * 60 * 60 * 24;
+    const nights = Math.round((endDate - startDate) / millisecondsPerDay);
+    const total = nights * pricePerNight * roomCount;
+
+    totalSpan.textContent = `$ ${total.toFixed(2)}`;
 }
 
-
-
 document.querySelector('.increment2').addEventListener('click', () => {
-  roomInput.value = Number(roomInput.value) + 1;
-  updateCounts();
+    roomInput.value = Number(roomInput.value) + 1;
+
+    calculateTotal(); // <-- Make sure this is called
 });
 
 document.querySelector('.decrement2').addEventListener('click', () => {
-  if (Number(roomInput.value) > 0) {
-    roomInput.value = Number(roomInput.value) - 1;
-    updateCounts();
-  }
+    if (Number(roomInput.value) > 1) {
+        roomInput.value = Number(roomInput.value) - 1;
+        calculateTotal(); // <-- Also call here
+    }
 });
+
+// Optional: also call calculateTotal when dates change
+document.getElementById("startDate").addEventListener("change", calculateTotal);
+document.getElementById("endDate").addEventListener("change", calculateTotal);
+
+
+

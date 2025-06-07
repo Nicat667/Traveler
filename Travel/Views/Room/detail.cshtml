@@ -13,7 +13,7 @@
                             <i class="fa-solid fa-bars"></i>
                         </div>
                         <div class="logo">
-                            <a href="index.html">
+                            <a asp-controller="Home" asp-action="Index">
                                 <picture>
                                     <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
                                     <img class="logo" src="~/assets/images/home/Traveler-logo.svg"
@@ -27,6 +27,9 @@
                         <ul>
                             <li>
                                 <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Hotel" asp-action="Index">Hotel</a>
                             </li>
                             <li>
                                 <a asp-controller="About" asp-action="Index">About</a>
@@ -436,7 +439,7 @@
                             </div>
                             <div class="total">
                                 <span>Total:</span>
-                                <span>$ 0.00</span>
+                                <span class="sum">$ 0.00</span>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3 w-100 but">Book</button>
                         </form>
