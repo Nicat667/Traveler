@@ -10,5 +10,6 @@ namespace Repository.Repositories.Interfaces
     public interface IRoomRepository : IBaseRepository<Room>
     {
         Task<IEnumerable<Room>> GetAllRooms();
+        Task<IEnumerable<Room>> GetRoomsByHotelId(int hotelId);
     }
 }

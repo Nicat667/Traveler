@@ -10,5 +10,6 @@ namespace Service.Services.Interfaces
     public interface IRoomService
     {
         Task<IEnumerable<RoomVM>> GetAllRooms();
+        Task<IEnumerable<RoomVM>> GetRoomsByHotelId(int hotelId);
     }
 }

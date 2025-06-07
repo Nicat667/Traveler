@@ -12,9 +12,11 @@ namespace Service.Services
     public class HotelService : IHotelService
     {
         private readonly IHotelRepository _hotelRepository;
-        public HotelService(IHotelRepository hotelRepository)
+        private readonly IRoomService _roomService;
+        public HotelService(IHotelRepository hotelRepository, IRoomService roomService)
         {
             _hotelRepository = hotelRepository;
+            _roomService = roomService;
         }
 
         public async Task<IEnumerable<HotelVM>> GetAllHotel()
@@ -51,16 +53,17 @@ namespace Service.Services
                 FitnessCenter = data.FitnessCenter,
                 Parking = data.Parking,
                 Description = data.Description,
-                Rooms = data.Rooms.Where(m => m.HotelId == id).Select(m => new ViewModels.Room.RoomVM
-                {
-                    HotelId = m.Id,
-                    Area = m.Area,
-                    BedCount = m.BedCount,
-                    GuestCapacity = m.GuestCapacity,
-                    MainImage = m.RoomImages.FirstOrDefault(x => x.IsMain == true).Name,
-                    Price = m.Price,
-                    Type = m.Type.ToString()
-                })
+                //Rooms = data.Rooms.Where(m => m.HotelId == id).Select(m => new ViewModels.Room.RoomVM
+                //{
+                //    HotelId = m.Id,
+                //    Area = m.Area,
+                //    BedCount = m.BedCount,
+                //    GuestCapacity = m.GuestCapacity,
+                //    MainImage = m.RoomImages.FirstOrDefault(x => x.IsMain == true).Name,
+                //    Price = m.Price,
+                //    Type = m.Type.ToString()
+                //})
+                Rooms = await _roomService.GetRoomsByHotelId(id)
             };
         }
     }

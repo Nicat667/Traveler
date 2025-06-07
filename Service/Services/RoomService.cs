@@ -30,5 +30,30 @@ namespace Service.Services
                 Type = r.Type.ToString()
             });
         }
+
+        public async Task<IEnumerable<RoomVM>> GetRoomsByHotelId(int hotelId)
+        {
+            var datas = await _roomRepository.GetRoomsByHotelId(hotelId);
+
+            var grouped = datas
+                .GroupBy(r => new { r.Type, r.GuestCapacity, r.BedCount })
+                .Select(group =>
+                {
+                    var room = group.OrderBy(r => r.Price).First(); 
+
+                    return new RoomVM
+                    {
+                        Area = room.Area,
+                        Price = room.Price,
+                        BedCount = room.BedCount,
+                        GuestCapacity = room.GuestCapacity,
+                        HotelId = room.HotelId,
+                        MainImage = room.RoomImages.FirstOrDefault(m => m.IsMain == true)?.Name,
+                        Type = room.Type.ToString()
+                    };
+                });
+
+            return grouped;
+        }
     }
 }

@@ -18,7 +18,8 @@ namespace Repository
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IFAQRepository, FAQRepository>();
-            services.AddScoped<IHotelRepository, HotelRepository>(); 
+            services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
             return services;
         }
     }
