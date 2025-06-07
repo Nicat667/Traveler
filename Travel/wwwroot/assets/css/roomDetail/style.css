@@ -877,7 +877,8 @@ main {
 }
 #info .cus-container .row .right .book {
   width: 100%;
-  height: 398px;
+  height: auto;
+  min-height: 398px;
   border-radius: 15px;
   background-color: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -910,10 +911,12 @@ main {
   justify-content: center;
 }
 #info .cus-container .row .right .book form .cus-container2 .rooms {
-  margin-top: 10px;
   width: 80%;
   height: 54px;
   margin-left: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #info .cus-container .row .right .book form .cus-container2 .rooms span {
   font-size: 20px;
@@ -965,11 +968,23 @@ main {
   #info .row {
     flex-direction: column;
   }
+  #info .row .col-md-6 {
+    width: 100% !important;
+  }
   #info .row .right {
     width: 809px !important;
     min-width: unset;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+  }
+  #info .row .right .book {
+    margin-bottom: 50px;
+  }
+  #info .row .right .book .price {
+    margin-top: 20px;
+  }
+  #info .row .right .book .but {
+    margin-bottom: 20px !important;
   }
 }
 

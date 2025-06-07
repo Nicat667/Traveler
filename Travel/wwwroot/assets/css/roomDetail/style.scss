@@ -749,7 +749,7 @@ main {
                     border-bottom: 1px solid rgb(225, 225, 225);
 
                     .l {
-                        .type{
+                        .type {
                             font-size: 18px;
                             font-weight: 600;
                             margin-top: 5px;
@@ -757,11 +757,13 @@ main {
                             align-items: center;
                             height: 60px;
                         }
+
                         .icons {
                             display: flex;
                             flex-direction: row;
                             gap: 10px;
                             margin-top: 10px;
+
                             .x {
                                 width: 125px;
                                 height: 70px;
@@ -769,6 +771,7 @@ main {
                                 flex-direction: row;
                                 align-items: center;
                                 gap: 10px;
+
                                 .icon {
                                     width: 58px;
                                     height: 58px;
@@ -1049,7 +1052,8 @@ main {
             .right {
                 .book {
                     width: 100%;
-                    height: 398px;
+                    height: auto;
+                    min-height: 398px;
                     border-radius: 15px;
                     background-color: white;
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -1058,14 +1062,15 @@ main {
                     justify-content: center;
                     align-items: center;
                     margin-top: 100px;
-                   
-                    .price{
-                        p{
+
+                    .price {
+                        p {
                             text-align: center;
                             font-size: 17px;
                             font-weight: 600;
                         }
                     }
+
                     form {
                         width: 90%;
 
@@ -1084,13 +1089,16 @@ main {
                             flex-direction: column;
                             justify-content: center;
 
-                        
+
 
                             .rooms {
-                                margin-top: 10px;
+
                                 width: 80%;
                                 height: 54px;
                                 margin-left: 35px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
 
                                 span {
                                     font-size: 20px;
@@ -1158,14 +1166,31 @@ main {
         .row {
             flex-direction: column;
 
+            .col-md-6 {
+                width: 100% !important;
+            }
+
             .right {
                 width: 809px !important;
                 min-width: unset;
                 border-bottom-left-radius: 15px;
                 border-bottom-right-radius: 15px;
+
+                .book {
+                    margin-bottom: 50px;
+
+                    .price {
+                        margin-top: 20px;
+                    }
+
+                    .but {
+                        margin-bottom: 20px !important;
+                    }
+                }
             }
         }
     }
+
 }
 
 
