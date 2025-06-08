@@ -22,6 +22,7 @@ namespace Service.Services
             var datas = await _cityRepository.GetAllWithHotels();
             return datas.Select(x => new CityVM
             {
+                Id = x.Id,
                 Name = x.Name,
                 Image = x.Image,
                 HotelCount = x.Hotels.Count,

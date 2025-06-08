@@ -25,5 +25,10 @@ namespace Reservation_Final.Controllers
             var datas = await _hotelService.HotelFilter(filter);
             return View(datas);
         }
+        public async Task<IActionResult> FilterByCity(int id)
+        {
+            var datas = await _hotelService.HotelFilterByCity(id);
+            return View(datas);
+        }
     }
 }

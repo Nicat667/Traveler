@@ -103,5 +103,24 @@ namespace Service.Services
             }).Where(m => m.MaxPrice <= filter.MaxValue && m.MinPrice >= filter.MinValue && (filter.StarCount == null || filter.StarCount.Contains(m.StarCount)));
             return filteredDatas;
         }
+
+        public async Task<IEnumerable<HotelVM>> HotelFilterByCity(int id)
+        {
+            var datas = await _hotelRepository.GetAllHotel();
+            var result = datas.Select(m => new HotelVM
+            {
+                Id = m.Id,
+                Name = m.Name,
+                StarCount = m.StarCount,
+                MainImage = m.HotelImages.FirstOrDefault(x => x.IsMain == true).Name,
+                Address = m.Address,
+                MinPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Min(r => r.Price) : 0,
+                MaxPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Max(r => r.Price) : 0,
+                CommentCount = m.Comments.Where(x => x.HotelId == m.Id).Count(),
+                CityId = m.CityId,
+                Rate = m.Comments.Any(c => c.HotelId == m.Id) ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id) : 5
+            }).Where(x => x.CityId == id);
+            return result;
+        }
     }
 }

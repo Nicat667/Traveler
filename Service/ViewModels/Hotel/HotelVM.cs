@@ -17,5 +17,6 @@ namespace Service.ViewModels.Hotel
         public decimal MaxPrice { get; set; }
         public decimal Rate { get; set; }
         public int CommentCount { get; set; }
+        public int CityId { get; set; }
     }
 }

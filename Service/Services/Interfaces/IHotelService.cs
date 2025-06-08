@@ -14,5 +14,6 @@ namespace Service.Services.Interfaces
         Task<HotelDetailVM> GetHotelDetail(int id);
         Task<PaginateResponse<HotelVM>> GetAllHotelsPaginated(int page, int take=6);
         Task<IEnumerable<HotelVM>> HotelFilter(FilterVM filter);
+        Task<IEnumerable<HotelVM>> HotelFilterByCity(int id);
     }
 }

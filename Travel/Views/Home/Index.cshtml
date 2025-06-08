@@ -310,7 +310,7 @@
                     foreach(var city in Model.Cities)
                     {
                         <div class="col-lg-4 col-md-6 col-sm-12 mt-4 item">
-                            <a href="#">
+                            <a asp-controller="Hotel" asp-action="FilterByCity" asp-route-id="@city.Id">
                                 <div class="img"
                                      style="background-image: url('assets/images/home/@city.Image'); background-size: cover;">
 
