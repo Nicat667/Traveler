@@ -7,7 +7,7 @@
 }
 <main>
     <section id="nav"
-             style="background-image: url('assets/images/home/banner-search-form-min.png'); background-size: cover;">
+             style="background-image: url('@Url.Content("~/assets/images/home/banner-search-form-min.png")'); background-size: cover;">
         <div class="navbar">
             <div class="cus-container">
                 <div class="row align-items-center line">
@@ -212,12 +212,12 @@
                     <div class="blogs">
 
                         @{
-                            foreach(var blog in Model.Blogs)
+                            foreach (var blog in Model.Blogs)
                             {
                                 <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id">
                                     <div class="blog">
                                         <div class="img"
-                                             style="background-image: url('assets/images/home/@blog.Image'); background-size: cover;">
+                                             style="background-image: url('@Url.Content($"~/assets/images/home/{blog.Image}")'); background-size: cover;">
                                         </div>
                                         <div class="contain">
                                             <div class="x">
@@ -234,7 +234,7 @@
                                             </div>
                                             <div class="author">
                                                 <div class="image"
-                                                     style="background-image: url('assets/images/home/@blog.AuthorImage'); background-size: cover;">
+                                                     style="background-image: url('@Url.Content($"~/assets/images/home/{blog.AuthorImage}")'); background-size: cover;">
                                                 </div>
                                                 <div class="name">
                                                     <p>@blog.AuthorName</p>
@@ -248,7 +248,7 @@
                                 </a>
                             }
                         }
-                      
+
                     </div>
                     <nav aria-label="Custom page navigation">
                         <ul class="pagination justify-content-center" id="custom-pagination">
@@ -278,7 +278,7 @@
                                 </div>
                                 <div class="names">
                                     @{
-                                        foreach(var item in @Model.BlogCategories)
+                                        foreach (var item in @Model.BlogCategories)
                                         {
                                             <a asp-controller="Blog" asp-action="BlogsByCategory" asp-route-id="@item.Id">
                                                 <div class="item">

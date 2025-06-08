@@ -21,6 +21,23 @@ namespace Reservation_Final.Controllers
             };
             return View(blogAndCategoryVM);
         }
-        
+        public async Task<IActionResult> BlogDetail(int id)
+        {
+            BlogAndCategoryVM blogAndCategoryVM = new BlogAndCategoryVM()
+            {
+                BlogCategories = await _blogService.GetAllBlogCategories(),
+                Blog = await _blogService.GetBlogById(id)
+            };
+            return View(blogAndCategoryVM);
+        }
+        public async Task<IActionResult> BlogsByCategory(int id)
+        {
+            BlogAndCategoryVM blogAndCategoryVM = new BlogAndCategoryVM()
+            {
+                BlogCategories = await _blogService.GetAllBlogCategories(),
+                Blogs = await _blogService.GetAllByCategoryId(id)
+            };
+            return View(blogAndCategoryVM);
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Repository.Repositories
             _context = context;
         }
 
+
         public async Task<IEnumerable<Blog>> GetAllWithCategories()
         {
             return await _context.Blogs.Include(m => m.BlogCategory).ToListAsync();

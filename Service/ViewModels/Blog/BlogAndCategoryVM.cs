@@ -10,5 +10,6 @@ namespace Service.ViewModels.Blog
     {
         public IEnumerable<BlogDetailVM> Blogs { get; set; }
         public IEnumerable<BlogCategoryVM> BlogCategories { get; set; }
+        public BlogDetailVM Blog { get; set; }
     }
 }
