@@ -17,6 +17,35 @@ namespace Service.Services
             _blogRepository = blogRepository;
         }
 
+        public async Task<IEnumerable<BlogCategoryVM>> GetAllBlogCategories()
+        {
+            var datas = await _blogRepository.GetCategories();
+            return datas.Select(m => new BlogCategoryVM
+            {
+                Name = m.Name,
+                Id = m.Id,
+                Count = m.Blogs.Count,
+            });
+        }
+
+        public async Task<IEnumerable<BlogDetailVM>> GetAllBlogsWithCategoriesAndImages()
+        {
+
+            var datas = await _blogRepository.GetAllWithCategories();
+            var result = datas.Select(m => new BlogDetailVM
+            {
+                Id = m.Id,
+                Image = m.Image,
+                AuthorImage = m.AuthorImage,
+                CategoryName = m.BlogCategory.Name,
+                Content = string.Join(" ", m.Content.Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Take(44)) + " ...",
+                Title = m.Title,
+                AuthorName = m.AuthorName,
+                CreateDate = m.CreateDate.ToString("yyyy-MM-dd HH:mm"),
+            });
+            return result;
+        }
+
         public async Task<IEnumerable<BlogVM>> GetAllWithCategories()
         {
             var datas = await _blogRepository.GetAllWithCategories();

@@ -661,6 +661,7 @@ body .move-up i {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-bottom: 20px; 
 }
 #content .cus-container .row .right .stable .categories .contain .names a {
   text-decoration: none;

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BlogAndCategoryVM
+@{
     ViewData["Title"] = "Blogs";
 }
 @section css {
@@ -210,321 +211,44 @@
                 <div class="col-lg-8 col-md-12 left">
                     <div class="blogs">
 
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
+                        @{
+                            foreach(var blog in Model.Blogs)
+                            {
+                                <a href="x">
+                                    <div class="blog">
+                                        <div class="img"
+                                             style="background-image: url('assets/images/home/@blog.Image'); background-size: cover;">
                                         </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
+                                        <div class="contain">
+                                            <div class="x">
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>@blog.CategoryName</span>
+                                            </div>
+                                            <div class="head">
+                                                <p>@blog.Title</p>
+                                            </div>
+                                            <div class="content">
+                                                <p>
+                                                    @blog.Content
+                                                </p>
+                                            </div>
+                                            <div class="author">
+                                                <div class="image"
+                                                     style="background-image: url('assets/images/home/@blog.AuthorImage'); background-size: cover;">
+                                                </div>
+                                                <div class="name">
+                                                    <p>@blog.AuthorName</p>
+                                                </div>
+                                                <div class="date">
+                                                    <p>@blog.CreateDate</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="x">
-                            <div class="blog">
-                                <div class="img"
-                                     style="background-image: url('assets/images/blogs/practicando-stand-up-paddle-algarve-870x500.jpg'); background-size: cover;">
-                                </div>
-                                <div class="contain">
-                                    <div class="x">
-                                        <i class="fa-solid fa-circle"></i>
-                                        <span>Booking</span>
-                                    </div>
-                                    <div class="head">
-                                        <p>A Seaside Reset in Laguna Beach</p>
-                                    </div>
-                                    <div class="content">
-                                        <p>
-                                            Rom the iconic to the unexpected, the city of San Francisco never ceases
-                                            to surprise. Kick-start your effortlessly delivered Northern California
-                                            holiday in the cosmopolitan hills of The City . Join your Travel
-                                            Director and fellow travellers for a Welcome Reception at your hotel
-                                        </p>
-                                    </div>
-                                    <div class="author">
-                                        <div class="image"
-                                             style="background-image: url('assets/images/blogs/32.jpg'); background-size: cover;">
-                                        </div>
-                                        <div class="name">
-                                            <p>By Modmix</p>
-                                        </div>
-                                        <div class="date">
-                                            <p>April 6, 2022 10:20</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                                </a>
+                            }
+                        }
+                      
                     </div>
                     <nav aria-label="Custom page navigation">
                         <ul class="pagination justify-content-center" id="custom-pagination">
@@ -553,42 +277,21 @@
                                     <p>Categories</p>
                                 </div>
                                 <div class="names">
-                                    <a href="x">
-                                        <div class="item">
-                                            <div class="x">
-                                                <i class="fa-solid fa-circle"></i>
-                                                <span>Booking</span>
-                                            </div>
-                                            <span class="count">2</span>
-                                        </div>
-                                    </a>
-                                    <a href="x">
-                                        <div class="item">
-                                            <div class="x">
-                                                <i class="fa-solid fa-circle"></i>
-                                                <span>Hotel</span>
-                                            </div>
-                                            <span class="count">2</span>
-                                        </div>
-                                    </a>
-                                    <a href="x">
-                                        <div class="item">
-                                            <div class="x">
-                                                <i class="fa-solid fa-circle"></i>
-                                                <span>Travel</span>
-                                            </div>
-                                            <span class="count">2</span>
-                                        </div>
-                                    </a>
-                                    <a href="x">
-                                        <div class="item">
-                                            <div class="x">
-                                                <i class="fa-solid fa-circle"></i>
-                                                <span>Booking</span>
-                                            </div>
-                                            <span class="count">2</span>
-                                        </div>
-                                    </a>
+                                    @{
+                                        foreach(var item in @Model.BlogCategories)
+                                        {
+                                            <a href="x">
+                                                <div class="item">
+                                                    <div class="x">
+                                                        <i class="fa-solid fa-circle"></i>
+                                                        <span>@item.Name</span>
+                                                    </div>
+                                                    <span class="count">@item.Count</span>
+                                                </div>
+                                            </a>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                         </div>

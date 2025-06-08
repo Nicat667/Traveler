@@ -23,5 +23,10 @@ namespace Repository.Repositories
         {
             return await _context.Blogs.Include(m => m.BlogCategory).ToListAsync();
         }
+
+        public async Task<IEnumerable<BlogCategory>> GetCategories()
+        {
+            return await _context.BlogCategories.Include(m=>m.Blogs).ToListAsync();
+        }
     }
 }

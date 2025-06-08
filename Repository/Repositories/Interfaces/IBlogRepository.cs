@@ -10,5 +10,6 @@ namespace Repository.Repositories.Interfaces
     public interface IBlogRepository : IBaseRepository<Blog>
     {
         Task<IEnumerable<Blog>> GetAllWithCategories();
+        Task<IEnumerable<BlogCategory>> GetCategories();
     }
 }

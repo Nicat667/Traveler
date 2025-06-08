@@ -11,5 +11,7 @@ namespace Service.Services.Interfaces
     public interface IBlogService
     {
         Task<IEnumerable<BlogVM>> GetAllWithCategories();
+        Task<IEnumerable<BlogDetailVM>> GetAllBlogsWithCategoriesAndImages();
+        Task<IEnumerable<BlogCategoryVM>> GetAllBlogCategories();
     }
 }
