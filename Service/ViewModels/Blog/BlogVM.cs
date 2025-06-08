@@ -12,5 +12,6 @@ namespace Service.ViewModels.Blog
         public string Title { get; set; }
         public string Content { get; set; }
         public string CategoryName { get; set; }
+        public bool IsVisible { get; set; }
     }
 }

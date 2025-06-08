@@ -16,6 +16,7 @@ namespace Domain.Models
         public string AuthorImage { get; set; }
         public string AuthorName { get; set; }
         public int CategoryId { get; set; }
+        public bool IsVisible { get; set; }
         public BlogCategory BlogCategory { get; set; }
     }
 }

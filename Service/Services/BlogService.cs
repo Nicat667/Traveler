@@ -25,7 +25,8 @@ namespace Service.Services
                 Image = x.Image,
                 Title = x.Title,
                 Content = string.Join(" ",x.Content.Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Take(46)) + " ...",
-                CategoryName = x.BlogCategory.Name
+                CategoryName = x.BlogCategory.Name,
+                IsVisible = x.IsVisible
             });
         }
     }

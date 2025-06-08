@@ -442,4 +442,98 @@ document.addEventListener('DOMContentLoaded', function () {
         icon.classList.toggle('fa-solid');
       });
     });
-  });
+});
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+const filterPrice = document.querySelector(".price-filter");
+const angleDown1 = document.querySelector(".price-filter .down1");
+const angleUp1 = document.querySelector(".price-filter .up1");
+
+const filterStar = document.querySelector(".star-filter");
+const angleDown2 = document.querySelector(".star-filter .down22");
+const angleUp2 = document.querySelector(".star-filter .up22");
+
+const priceTab = document.querySelector(".price-tab");
+const starTab = document.querySelector(".star-tab");
+
+
+filterPrice.addEventListener("click", function () {
+
+    const isVisible = !priceTab.classList.contains("d-none");
+
+
+    starTab.classList.add("d-none");
+    angleUp2.classList.add("d-none");
+    angleDown2.classList.remove("d-none");
+
+    if (isVisible) {
+
+        priceTab.classList.add("d-none");
+        angleUp1.classList.add("d-none");
+        angleDown1.classList.remove("d-none");
+    } else {
+
+        priceTab.classList.remove("d-none");
+        angleUp1.classList.remove("d-none");
+        angleDown1.classList.add("d-none");
+    }
+});
+
+
+filterStar.addEventListener("click", function () {
+
+    const isVisible = !starTab.classList.contains("d-none");
+
+
+    priceTab.classList.add("d-none");
+    angleUp1.classList.add("d-none");
+    angleDown1.classList.remove("d-none");
+
+    if (isVisible) {
+
+        starTab.classList.add("d-none");
+        angleUp2.classList.add("d-none");
+        angleDown2.classList.remove("d-none");
+    } else {
+
+        starTab.classList.remove("d-none");
+        angleUp2.classList.remove("d-none");
+        angleDown2.classList.add("d-none");
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const priceSlider = document.getElementById('price-slider');
+    const minInput = document.getElementById('minPriceInput');
+    const maxInput = document.getElementById('maxPriceInput');
+    const minDisplay = document.getElementById('minDisplay');
+    const maxDisplay = document.getElementById('maxDisplay');
+
+    if (priceSlider) {
+        noUiSlider.create(priceSlider, {
+            start: [50, 300], // default values
+            connect: true,
+            range: {
+                min: 0,
+                max: 1000
+            },
+            step: 1,
+            format: {
+                to: value => Math.round(value),
+                from: value => Number(value)
+            }
+        });
+
+        priceSlider.noUiSlider.on('update', function (values) {
+            const min = values[0];
+            const max = values[1];
+            minInput.value = min;
+            maxInput.value = max;
+            minDisplay.textContent = min;
+            maxDisplay.textContent = max;
+        });
+    }
+});

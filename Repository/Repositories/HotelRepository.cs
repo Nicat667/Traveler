@@ -23,6 +23,11 @@ namespace Repository.Repositories
             return await _context.Hotels.Include(m=>m.Rooms).ThenInclude(mx=>mx.RoomImages).Include(m=>m.Comments).Include(m=>m.HotelImages).ToListAsync();
         }
 
+        public async Task<IEnumerable<Hotel>> GetAllPaginated(int page, int take)
+        {
+            return await _context.Hotels.Include(m => m.Rooms).ThenInclude(mx => mx.RoomImages).Include(m => m.Comments).Include(m => m.HotelImages).Skip((page * take)-1).Take(take).ToListAsync();
+        }
+
         public async Task<Hotel> GetHotelById(int id)
         {
             return await _context.Hotels.Include(m => m.Rooms).ThenInclude(mx => mx.RoomImages).Include(m => m.Comments).Include(m => m.HotelImages).FirstOrDefaultAsync(m => m.Id == id);

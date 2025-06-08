@@ -11,5 +11,6 @@ namespace Repository.Repositories.Interfaces
     {
         Task<IEnumerable<Hotel>> GetAllHotel();
         Task<Hotel> GetHotelById(int id);
+        Task<IEnumerable<Hotel>> GetAllPaginated(int page, int take);
     }
 }

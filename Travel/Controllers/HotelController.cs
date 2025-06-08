@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Service.Services.Interfaces;
+using Service.ViewModels.Hotel;
 using System.Threading.Tasks;
 
 namespace Reservation_Final.Controllers
@@ -18,6 +19,11 @@ namespace Reservation_Final.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             return View(await _hotelService.GetHotelDetail(id));
+        }
+        public async Task<IActionResult> Filter(FilterVM filter)
+        {
+            var datas = await _hotelService.HotelFilter(filter);
+            return View(datas);
         }
     }
 }

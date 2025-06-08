@@ -1,4 +1,5 @@
-﻿using Service.ViewModels.Hotel;
+﻿using Service.Helpers.Responses;
+using Service.ViewModels.Hotel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Service.Services.Interfaces
     {
         Task<IEnumerable<HotelVM>> GetAllHotel();
         Task<HotelDetailVM> GetHotelDetail(int id);
+        Task<PaginateResponse<HotelVM>> GetAllHotelsPaginated(int page, int take=6);
+        Task<IEnumerable<HotelVM>> HotelFilter(FilterVM filter);
     }
 }

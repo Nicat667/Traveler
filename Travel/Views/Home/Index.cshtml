@@ -346,27 +346,30 @@
                         @{
                             foreach(var blog in Model.Blogs)
                             {
-                                <a href="#" class="blog-link">
-                                    <div class="x">
-                                        <div class="img">
-                                            <img src="~/assets/images/home/@blog.Image" alt="Blog image" />
+                                if (blog.IsVisible)
+                                {
+                                    <a href="#" class="blog-link">
+                                        <div class="x">
+                                            <div class="img">
+                                                <img src="~/assets/images/home/@blog.Image" alt="Blog image" />
+                                            </div>
+                                            <div class="blog-container">
+                                                <div class="category">
+                                                    <i class="fa-solid fa-circle"></i>
+                                                    <span>@blog.CategoryName.</span>
+                                                </div>
+                                                <div class="head">
+                                                    <p>@blog.Title</p>
+                                                </div>
+                                                <div class="content">
+                                                    <p>
+                                                        @blog.Content
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="blog-container">
-                                            <div class="category">
-                                                <i class="fa-solid fa-circle"></i>
-                                                <span>@blog.CategoryName.</span>
-                                            </div>
-                                            <div class="head">
-                                                <p>@blog.Title</p>
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    @blog.Content
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                }
                             }
                         }
 

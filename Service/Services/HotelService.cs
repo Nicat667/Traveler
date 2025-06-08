@@ -1,4 +1,5 @@
 ﻿using Repository.Repositories.Interfaces;
+using Service.Helpers.Responses;
 using Service.Services.Interfaces;
 using Service.ViewModels.Hotel;
 using System;
@@ -30,9 +31,37 @@ namespace Service.Services
                 MainImage = m.HotelImages.FirstOrDefault(x=>x.IsMain == true).Name,
                 Address = m.Address,
                 MinPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Min(r => r.Price) : 0,
+                MaxPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Max(r => r.Price) : 0,
                 CommentCount = m.Comments.Where(x=>x.HotelId == m.Id).Count(),
                 Rate = m.Comments.Any(c => c.HotelId == m.Id) ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id) : 5
             });
+        }
+
+        public async Task<PaginateResponse<HotelVM>> GetAllHotelsPaginated(int page, int take = 6)
+        {
+            var hotels = await _hotelRepository.GetAllHotel();
+            var paginatedDatas = await _hotelRepository.GetAllPaginated(page, take);
+            int count = hotels.Count();
+            int pageSize = (int)Math.Ceiling((double)count/take);
+            var response = new PaginateResponse<HotelVM>()
+            {
+                Datas = paginatedDatas.Select(m => new HotelVM
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    StarCount = m.StarCount,
+                    MainImage = m.HotelImages.FirstOrDefault(x => x.IsMain == true).Name,
+                    Address = m.Address,
+                    MinPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Min(r => r.Price) : 0,
+                    CommentCount = m.Comments.Count(x => x.HotelId == m.Id),
+                    Rate = m.Comments.Any(c => c.HotelId == m.Id)
+                        ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id)
+                        : 5
+                }).ToList(),
+                PageCount = pageSize
+            };
+
+            return response;
         }
 
         public async Task<HotelDetailVM> GetHotelDetail(int id)
@@ -53,18 +82,26 @@ namespace Service.Services
                 FitnessCenter = data.FitnessCenter,
                 Parking = data.Parking,
                 Description = data.Description,
-                //Rooms = data.Rooms.Where(m => m.HotelId == id).Select(m => new ViewModels.Room.RoomVM
-                //{
-                //    HotelId = m.Id,
-                //    Area = m.Area,
-                //    BedCount = m.BedCount,
-                //    GuestCapacity = m.GuestCapacity,
-                //    MainImage = m.RoomImages.FirstOrDefault(x => x.IsMain == true).Name,
-                //    Price = m.Price,
-                //    Type = m.Type.ToString()
-                //})
                 Rooms = await _roomService.GetRoomsByHotelId(id)
             };
+        }
+
+        public async Task<IEnumerable<HotelVM>> HotelFilter(FilterVM filter)
+        {
+            var datas = await _hotelRepository.GetAllHotel();
+            var filteredDatas = datas.Select(m => new HotelVM
+            {
+                Id = m.Id,
+                Name = m.Name,
+                StarCount = m.StarCount,
+                MainImage = m.HotelImages.FirstOrDefault(x => x.IsMain == true).Name,
+                Address = m.Address,
+                MinPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Min(r => r.Price) : 0,
+                MaxPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Max(r => r.Price) : 0,
+                CommentCount = m.Comments.Where(x => x.HotelId == m.Id).Count(),
+                Rate = m.Comments.Any(c => c.HotelId == m.Id) ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id) : 5
+            }).Where(m => m.MaxPrice <= filter.MaxValue && m.MinPrice >= filter.MinValue && (filter.StarCount == null || filter.StarCount.Contains(m.StarCount)));
+            return filteredDatas;
         }
     }
 }
