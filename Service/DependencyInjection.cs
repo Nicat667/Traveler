@@ -22,6 +22,7 @@ namespace Service
             services.AddScoped<IFAQService, FAQService>();
             services.AddScoped<IHotelService, HotelService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IStaffService, StaffService>();
             return services;
         }
     }

@@ -20,6 +20,7 @@ namespace Repository
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddScoped<IHotelRepository, HotelRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IStaffRepository, StaffRepository>();
             return services;
         }
     }

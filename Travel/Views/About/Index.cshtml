@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<StaffVM>
+@{
     ViewData["Title"] = "About";
 }
 @section css {
@@ -328,159 +329,31 @@
                 <p>Meet our team</p>
             </div>
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team1-600x700.png'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team1-600x700.png">  -->
+                @{
+                    foreach(var item in Model)
+                    {
+                        <div class="col-md-3 col-sm-6">
+                            <div class="item">
+                                <div class="coverForImage">
+                                    <div class="img"
+                                         style="background-image: url('assets/images/about/@item.Image'); background-size: cover;">
+                                        <!-- <img src="./assets/images/about/team2-600x700.png">  -->
+                                    </div>
+                                </div>
+
+                                <div class="name">
+                                    <p>@item.Name</p>
+                                </div>
+
+                                <div class="position">
+                                    <p>@item.Position</p>
+                                </div>
                             </div>
                         </div>
+                    }
+                }
 
-                        <div class="name">
-                            <p>Darlene Robertson</p>
-                        </div>
-
-                        <div class="position">
-                            <p>Founder & CEO</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team2-600x700.webp'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team2-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Jenny Wilson</p>
-                        </div>
-
-                        <div class="position">
-                            <p>Marketing Manager</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team3-600x700.png'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team3-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Jerome Bell</p>
-                        </div>
-
-                        <div class="position">
-                            <p>Product Manager</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team4-600x700.png'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team4-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Annette Black</p>
-                        </div>
-
-                        <div class="position">
-                            <p>UI/UX Designer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team5-600x700.webp'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team5-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Eleanor Pena</p>
-                        </div>
-
-                        <div class="position">
-                            <p>Creative Director</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team6-600x700.png'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team6-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Marvin McKinney</p>
-                        </div>
-
-                        <div class="position">
-                            <p>Chief Financial Officer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team7-600x700.png'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team7-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Annette Black</p>
-                        </div>
-
-                        <div class="position">
-                            <p>Project Manager</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="item">
-                        <div class="coverForImage">
-                            <div class="img"
-                                 style="background-image: url('assets/images/about/team8-600x700.webp'); background-size: cover;">
-                                <!-- <img src="./assets/images/about/team8-600x700.png">  -->
-                            </div>
-                        </div>
-
-                        <div class="name">
-                            <p>Darrell Steward</p>
-                        </div>
-
-                        <div class="position">
-                            <p>President of Sales</p>
-                        </div>
-                    </div>
-                </div>
-
-
+               
 
             </div>
         </div>
