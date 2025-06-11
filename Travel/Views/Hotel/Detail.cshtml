@@ -252,7 +252,7 @@
                             </div>
                             <div class="rating">
                                 <div class="rate">
-                                    <span>@Model.Rate</span>
+                                    <span>@((Model.Rate % 1 == 0) ? Model.Rate.ToString("0") : Model.Rate.ToString("0.0"))</span>
                                     <span>/</span>
                                     <span>5</span>
                                 </div>
@@ -439,7 +439,7 @@
                                     </div>
                                     <div class="rating">
                                         <div class="rate">
-                                            <span>@comment.Rate</span>
+                                            <span>@((comment.Rate % 1 == 0) ? comment.Rate.ToString("0") : comment.Rate.ToString("0.0"))</span>
                                             <span>/</span>
                                             <span>5</span>
                                         </div>
@@ -465,17 +465,17 @@
                             </div>
                         </div>
                         <div class="comment-form d-none">
-                            <form asp-action="SubmitReview" method="post">
-                                <div class="form-row-equal mb-3">
+                            <form asp-controller="Comment" asp-action="AddComment" method="post">
+                                <div class="form-row-equal mb-3" >
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input type="text" name="Name" class="form-control" id="name"
+                                        <input type="text" name="AuthorName" class="form-control" id="name"
                                                placeholder="Enter name">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="rating">Rating</label>
-                                        <select name="Rating" class="form-control" id="rating">
+                                        <select name="Rate" class="form-control" id="rating">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -487,10 +487,10 @@
 
                                 <div class="form-group mb-3">
                                     <label for="content">Content</label>
-                                    <textarea name="Content" class="form-control" id="content" rows="4"
+                                    <textarea name="Message" class="form-control" id="content" rows="4"
                                               placeholder="Write your review..."></textarea>
                                 </div>
-
+                                <input type="hidden" class="hotelId" name="HotelId" value="@Model.Id"/>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
 

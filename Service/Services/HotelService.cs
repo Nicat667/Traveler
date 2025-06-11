@@ -69,6 +69,7 @@ namespace Service.Services
             var data = await _hotelRepository.GetHotelById(id);
             return new HotelDetailVM
             {
+                Id = data.Id,
                 Name = data.Name,
                 StarCount = data.StarCount,
                 Address = data.Address,

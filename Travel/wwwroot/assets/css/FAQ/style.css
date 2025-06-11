@@ -528,62 +528,77 @@ body .move-up i {
 }
 
 #questions {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
-#questions .cus-container {
-  width: 86%;
-}
-#questions .cus-container p {
-  font-size: 34px;
-  font-weight: 500;
-  text-align: center;
-}
-#questions .cus-container .row {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-}
-#questions .cus-container .row .col-md-6 {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 600px;
-}
-#questions .cus-container .row .item {
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-#questions .cus-container .row .item p {
-  font-size: 22px;
-  margin: 0 40px 10px 0;
-}
-#questions .cus-container .row .item i {
-  position: absolute;
-  top: 33px;
-  right: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-#questions .cus-container .row .item .content {
-  font-size: 18px;
-  color: gray;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.4s ease;
-}
-#questions .cus-container .row .item.expanded .content {
-  max-height: 200px;
-}
-#questions .cus-container .row .item.expanded i {
-  transform: rotate(45deg);
-}
+
+    #questions .cus-container {
+        width: 86%;
+    }
+
+        #questions .cus-container p {
+            font-size: 34px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        #questions .cus-container .row {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+            #questions .cus-container .row .col-md-12 .faq-container {
+                -moz-column-count: 2;
+                column-count: 2;
+                -moz-column-gap: 40px;
+                column-gap: 40px;
+            }
+
+            #questions .cus-container .row .item {
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                position: relative;
+                transition: all 0.3s ease;
+                -moz-column-break-inside: avoid;
+                break-inside: avoid;
+                margin-bottom: 20px;
+                
+            }
+
+                #questions .cus-container .row .item p {
+                    font-size: 22px;
+                    margin: 0 40px 10px 0;
+                }
+
+                #questions .cus-container .row .item i {
+                    position: absolute;
+                    top: 33px;
+                    right: 30px;
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                }
+
+                #questions .cus-container .row .item .content {
+                    font-size: 18px;
+                    color: gray;
+                    overflow: hidden;
+                    max-height: 0;
+                    transition: max-height 0.4s ease;
+                }
+
+                #questions .cus-container .row .item.expanded .content {
+                    max-height: 200px;
+                }
+
+                #questions .cus-container .row .item.expanded i {
+                    transform: rotate(45deg);
+                }
+
 
 #subscribtion {
   width: 100%;

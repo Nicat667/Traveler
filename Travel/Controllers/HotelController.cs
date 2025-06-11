@@ -22,13 +22,11 @@ namespace Reservation_Final.Controllers
         }
         public async Task<IActionResult> Filter(FilterVM filter)
         {
-            var datas = await _hotelService.HotelFilter(filter);
-            return View(datas);
+            return View(await _hotelService.HotelFilter(filter));
         }
         public async Task<IActionResult> FilterByCity(int id)
         {
-            var datas = await _hotelService.HotelFilterByCity(id);
-            return View(datas);
+            return View(await _hotelService.HotelFilterByCity(id));
         }
     }
 }

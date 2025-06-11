@@ -1,8 +1,9 @@
-﻿@{
+﻿@model IEnumerable<FAQVM>
+@{
     ViewData["Title"] = "FAQ";
 }
 @section css {
-    <link rel="stylesheet" href="~/assets/css/FAQ/style.css">
+    <link rel="stylesheet" href="~/assets/css/FAQ/style.css?v=@DateTime.Now.Ticks">
 }
 <main>
     <section id="nav"
@@ -208,91 +209,26 @@
         <div class="cus-container">
             <p>Frequently asked questions</p>
             <div class="row">
-                <div class="col-md-6 ">
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
+                <div class="col-md-12 ">
+                    <div class="faq-container">
+                        @{
+                            foreach(var item in Model)
+                            {
+                                <div class="item">
+                                    <p>@item.Question</p>
+                                    <i class="fa-solid fa-plus"></i>
+                                    <div class="content">
+                                        <span>
+                                            @item.Answer
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <p>How will I receive my payment?</p>
-                        <i class="fa-solid fa-plus"></i>
-                        <div class="content">
-                            <span>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem repellat natus
-                                maxime error recusandae aliquam!
-                            </span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>

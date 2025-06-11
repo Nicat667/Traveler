@@ -10,6 +10,7 @@ namespace Service.ViewModels.Hotel
 {
     public class HotelDetailVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }

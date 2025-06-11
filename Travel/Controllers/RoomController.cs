@@ -18,8 +18,7 @@ namespace Travel.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
-            var data = await _roomService.GetRoomById(id);
-            return View(data);
+            return View(await _roomService.GetRoomById(id));
         }
     }
 }

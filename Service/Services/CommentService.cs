@@ -1,5 +1,6 @@
 ﻿using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
+using Service.ViewModels.Comments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,18 @@ namespace Service.Services
         public CommentService(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
+        }
+
+        public async Task AddComment(CommentVM comment)
+        {
+            await _commentRepository.CreateAsync(new Domain.Models.Comment
+            {
+                AuthorName = comment.AuthorName,
+                Rate = comment.Rate,
+                Message = comment.Message,
+                HotelId = comment.HotelId,
+                Created = DateTime.Now,
+            });
         }
     }
 }

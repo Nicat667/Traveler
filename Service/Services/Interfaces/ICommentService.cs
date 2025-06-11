@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Service.ViewModels.Comments;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace Service.Services.Interfaces
 {
     public interface ICommentService
     {
+        Task AddComment(CommentVM comment);
     }
 }
