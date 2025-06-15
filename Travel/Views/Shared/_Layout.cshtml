@@ -1,6 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@inject ISettingService _settingService
+@{
+    var datas = await _settingService.GetSettings();
+}
+<!DOCTYPE html>
 <html lang="en">
-
+<title>@ViewData["Title"] - Traveler</title>
+<link rel="icon" href="~/assets/images/home/Favicon-32x32.webp"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +22,11 @@
                     <div class="col-md-6 left">
                         <div class="phone">
                             <i class="fa-solid fa-phone-volume"></i>
-                            <span>(000) 999 -656 -888</p>
+                            <span>@datas["phone"]</p>
                         </div>
                         <div class="envelope">
                             <i class="fa-regular fa-envelope"></i>
-                            <span>travelerwp@gmail.com</p>
+                            <span>@datas["email"]</p>
                         </div>
                     </div>
                     <div class="col-md-6 right">

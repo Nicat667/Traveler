@@ -1,6 +1,8 @@
-﻿using Repository.Repositories.Interfaces;
+﻿using Domain.Models;
+using Repository.Repositories.Interfaces;
 using Service.Helpers.Responses;
 using Service.Services.Interfaces;
+using Service.ViewModels;
 using Service.ViewModels.Hotel;
 using System;
 using System.Collections.Generic;
@@ -122,6 +124,45 @@ namespace Service.Services
                 Rate = m.Comments.Any(c => c.HotelId == m.Id) ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id) : 5
             }).Where(x => x.CityId == id);
             return result;
+        }
+
+        public async Task<IEnumerable<HotelVM>> Search(SearchVM query)
+        {
+            var datas = await _hotelRepository.Search();
+            
+            if (query.CityName != null)
+            {
+                datas = datas.Where(m => m.City.Name == query.CityName);
+            }
+            return datas.Where(hotel =>
+            {
+                var availableRooms = hotel.Rooms
+                    .Where(r => !r.Reservations.Any(res =>
+                        query.StartDate < res.EndDate &&
+                        query.EndDate > res.StartDate))
+                    .ToList();
+
+                var validRoomTypeGroup = availableRooms
+                    .GroupBy(r => r.Type)
+                    .FirstOrDefault(group =>
+                        group.Count() >= query.RoomCount &&
+                        group.OrderByDescending(r => r.GuestCapacity)
+                             .Take(query.RoomCount)
+                             .Sum(r => r.GuestCapacity) >= query.GuestCount);
+
+                return validRoomTypeGroup != null;
+            }).Select(m => new HotelVM
+            {
+                Id = m.Id,
+                Name = m.Name,
+                StarCount = m.StarCount,
+                MainImage = m.HotelImages.FirstOrDefault(x => x.IsMain == true).Name,
+                Address = m.Address,
+                MinPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Min(r => r.Price) : 0,
+                MaxPrice = m.Rooms.Any(r => r.HotelId == m.Id) ? m.Rooms.Where(r => r.HotelId == m.Id).Max(r => r.Price) : 0,
+                CommentCount = m.Comments.Where(x => x.HotelId == m.Id).Count(),
+                Rate = m.Comments.Any(c => c.HotelId == m.Id) ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id) : 5
+            });
         }
     }
 }

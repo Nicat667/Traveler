@@ -2,6 +2,10 @@
 @{
     ViewData["Title"] = "About";
 }
+@inject ISettingService _settingService
+@{
+    var datas = await _settingService.GetSettings();
+}
 @section css {
     <link rel="stylesheet" href="~/assets/css/About/style.css">
 }
@@ -19,8 +23,7 @@
                             <a asp-controller="Home" asp-action="Index">
                                 <picture>
                                     <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
-                                    <img class="logo" src="~/assets/images/home/Traveler-logo.svg"
-                                         alt="Traveler Logo">
+                                    <img class="logo" src="~/assets/images/home/@datas["logo"]">
                                 </picture>
                             </a>
                         </div>
@@ -210,7 +213,7 @@
     <section id="video">
         <div class="cus-container">
             <div class="video">
-                <video id="myVideo" src="~/assets/images/about/3246359-uhd_3840_2160_25fps.mp4" controls
+                <video id="myVideo" src="~/assets/images/about/@datas["video"]" controls
                        preload="metadata"></video>
                 <div class="play-button" id="playBtn">
                     <i class="fa-solid fa-play"></i>

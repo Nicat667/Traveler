@@ -2,6 +2,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@inject ISettingService _settingService
+@{
+    var datas = await _settingService.GetSettings();
+}
 @section css {
     <link rel="stylesheet" href="~/assets/css/Home/style.css">
 }
@@ -18,9 +22,7 @@
                             <a asp-controller="Home" asp-action="Index">
                                 <picture>
                                     <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
-                                    <img class="logo" src="~/assets/images/home/Traveler-logo.svg"
-                                         alt="Traveler Logo">
-
+                                    <img class="logo" src="~/assets/images/home/@datas["logo"]">
                                 </picture>
                             </a>
                         </div>
@@ -208,7 +210,7 @@
 
 
     <div class="hotel-input">
-        <form method="get" action="./hotels.html">
+        <form method="get" asp-controller="Hotel" asp-action="search">
             <div class="location">
                 <div class="a">
                     <i class="fa-solid fa-location-dot"></i>
@@ -216,7 +218,13 @@
                 <div class="b">
                     <label>
                         Location</lable>
-                        <input type="text" placeholder="Where are you going?">
+                        <input type="text" list="options" name="CityName" placeholder="Where are you going?">
+                        <datalist id="options">
+                            @foreach (var city in Model.Cities)
+                            {
+                                <option value="@city.Name"></option>
+                            }
+                        </datalist>
                 </div>
                 <div class="line">
                 </div>
@@ -227,14 +235,14 @@
                 </div>
                 <div class="start">
                     <label>Check in</label>
-                    <input type="date">
+                    <input type="date" name="StartDate">
                 </div>
                 <div class="toright">
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
                 <div class="end">
                     <label>Check out</label>
-                    <input type="date">
+                    <input type="date" name="EndDate">
                 </div>
                 <div class="line">
                 </div>
@@ -255,7 +263,7 @@
                         <div class="number-input">
                             <span>Guests</span>
                             <button type="button" class="decrement">−</button>
-                            <input type="number" min="0" max="100" step="1" value="1" />
+                            <input type="number" min="0" name="GuestCount" max="100" step="1" value="1" />
                             <button type="button" class="increment">+</button>
                         </div>
 
@@ -264,7 +272,7 @@
                         <div class="number-input2">
                             <span>Rooms</span>
                             <button type="button" class="decrement2">−</button>
-                            <input type="number" min="0" max="100" step="1" value="1" />
+                            <input type="number" min="0" max="100" name="RoomCount" step="1" value="1" />
                             <button type="button" class="increment2">+</button>
                         </div>
                     </div>

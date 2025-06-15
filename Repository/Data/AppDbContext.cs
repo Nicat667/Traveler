@@ -28,6 +28,7 @@ namespace Repository.Data
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Setting> Settings { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

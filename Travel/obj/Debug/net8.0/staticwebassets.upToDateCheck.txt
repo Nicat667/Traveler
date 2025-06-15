@@ -41,6 +41,7 @@ wwwroot\assets\images\home\cali_5-600x400.jpg
 wwwroot\assets\images\home\California.jpg
 wwwroot\assets\images\home\chicago-360-view-john-hancock-observatory.jpg
 wwwroot\assets\images\home\drone-photograph-chicago-river-outer-drive.avif
+wwwroot\assets\images\home\Favicon-32x32.webp
 wwwroot\assets\images\home\Frame-3182.svg
 wwwroot\assets\images\home\glaciar-vatnajokull-600x400.jpg
 wwwroot\assets\images\home\las-vegas-2140893_1280.webp

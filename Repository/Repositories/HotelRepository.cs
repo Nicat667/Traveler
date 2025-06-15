@@ -20,7 +20,7 @@ namespace Repository.Repositories
 
         public async Task<IEnumerable<Hotel>> GetAllHotel()
         {
-            return await _context.Hotels.Include(m=>m.Rooms).ThenInclude(mx=>mx.RoomImages).Include(m=>m.Comments).Include(m=>m.HotelImages).ToListAsync();
+            return await _context.Hotels.Include(m=>m.Rooms).ThenInclude(m=>m.RoomImages).Include(m=>m.Comments).Include(m=>m.HotelImages).ToListAsync();
         }
 
         public async Task<IEnumerable<Hotel>> GetAllPaginated(int page, int take)
@@ -31,6 +31,11 @@ namespace Repository.Repositories
         public async Task<Hotel> GetHotelById(int id)
         {
             return await _context.Hotels.Include(m => m.Rooms).ThenInclude(mx => mx.RoomImages).Include(m => m.Comments).Include(m => m.HotelImages).FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        public async Task<IEnumerable<Hotel>> Search()
+        {
+            return await _context.Hotels.Include(m => m.Rooms).ThenInclude(m => m.Reservations).Include(m => m.Rooms).ThenInclude(m => m.RoomImages).Include(m => m.Comments).Include(m => m.HotelImages).Include(m=>m.City).ToListAsync();
         }
     }
 }

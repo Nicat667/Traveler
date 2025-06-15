@@ -4,6 +4,10 @@
 @section css {
     <link rel="stylesheet" href="~/assets/css/Contact/style.css">
 }
+@inject ISettingService _settingService
+@{
+    var datas = await _settingService.GetSettings();
+}
 <main>
     <section id="nav"
              style="background-image: url('assets/images/home/banner-search-form-min.png'); background-size: cover;">
@@ -18,8 +22,7 @@
                             <a asp-controller="Home" asp-action="Index">
                                 <picture>
                                     <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
-                                    <img class="logo" src="~/assets/images/home/Traveler-logo.svg"
-                                         alt="Traveler Logo">
+                                    <img class="logo" src="~/assets/images/home/@datas["logo"]">
                                 </picture>
                             </a>
                         </div>
