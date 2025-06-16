@@ -11,5 +11,6 @@ namespace Service.Services.Interfaces
     public interface ICommentService
     {
         Task AddComment(CommentVM comment);
+        Task<IEnumerable<CommentVM>> ShowMore(int hotelId, int skip);
     }
 }

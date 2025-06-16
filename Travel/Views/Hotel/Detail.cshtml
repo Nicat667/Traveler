@@ -61,9 +61,11 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <div class="circle">
-                                <i class="fa-regular fa-user"></i>
-                            </div>
+                            <a href="#">
+                                <div class="circle">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -432,28 +434,34 @@
 
                     </div>
                     <div class="comments">
-                        @{
-                            foreach(var comment in Model.Comments)
-                            {
-                                <div class="comment">
-                                    <div class="author">
-                                        <p class="name">@comment.AuthorName</p>
-                                        <p class="date">@comment.Created</p>
-                                    </div>
-                                    <div class="rating">
-                                        <div class="rate">
-                                            <span>@((comment.Rate % 1 == 0) ? comment.Rate.ToString("0") : comment.Rate.ToString("0.0"))</span>
-                                            <span>/</span>
-                                            <span>5</span>
+                        <div class="comment-list">
+                            @{
+                                foreach (var comment in Model.Comments)
+                                {
+                                    <div class="comment">
+                                        <div class="author">
+                                            <p class="name">@comment.AuthorName</p>
+                                            <p class="date">@comment.Created</p>
                                         </div>
-                                        <p class="content">
-                                            @comment.Message
-                                        </p>
+                                        <div class="rating">
+                                            <div class="rate">
+                                                <span>@((comment.Rate % 1 == 0) ? comment.Rate.ToString("0") : comment.Rate.ToString("0.0"))</span>
+                                                <span>/</span>
+                                                <span>5</span>
+                                            </div>
+                                            <p class="content">
+                                                @comment.Message
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+
+                                }
                             }
-                        }
-                        
+                            
+                        </div>
+                        <button class="btn btn-primary showMore" style=" display: inline-block; width: 130px; margin: 0 auto" hotelId="@Model.Id">
+                            Show More
+                        </button>
                     </div>
                     <div class="addComment">
                         <div class="button-comment">

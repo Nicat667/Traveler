@@ -9,9 +9,11 @@ namespace Reservation_Final.Controllers
     public class HotelController : Controller
     {
         private readonly IHotelService _hotelService;
-        public HotelController(IHotelService hotelService)
+        private readonly ICommentService _commentService;
+        public HotelController(IHotelService hotelService, ICommentService commentService)
         {
             _hotelService = hotelService;
+            _commentService = commentService;
         }
         public async Task<IActionResult> Index()
         {
@@ -32,6 +34,10 @@ namespace Reservation_Final.Controllers
         public async Task<IActionResult> Search(SearchVM query)
         {
             return View(await _hotelService.Search(query));
+        }
+        public async Task<IActionResult> ShowMore(int hotelId, int skip)
+        {
+            return Ok(await _commentService.ShowMore(hotelId, skip));
         }
     }
 }

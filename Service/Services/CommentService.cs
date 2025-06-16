@@ -1,4 +1,5 @@
-﻿using Repository.Repositories.Interfaces;
+﻿using Repository.Repositories;
+using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
 using Service.ViewModels.Comments;
 using System;
@@ -26,6 +27,18 @@ namespace Service.Services
                 Message = comment.Message,
                 HotelId = comment.HotelId,
                 Created = DateTime.Now,
+            });
+        }
+        public async Task<IEnumerable<CommentVM>> ShowMore(int hotelId, int skip)
+        {
+            var comments = await _commentRepository.GetAllAsync();
+            var commentsByHotelId  = comments.Where(m=>m.HotelId == hotelId);
+            return commentsByHotelId.Skip(skip).Take(3).Select(m=> new CommentVM
+            {
+                HotelId=m.HotelId,
+                AuthorName = m.AuthorName,
+                Message = m.Message,
+                Rate = m.Rate,
             });
         }
     }

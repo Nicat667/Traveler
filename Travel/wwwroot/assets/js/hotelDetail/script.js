@@ -320,3 +320,48 @@ commentButton.addEventListener('click', function(){
     commentForm.classList.add('d-none');
   }
 })
+
+
+
+let showMoreBtn = document.querySelector(".showMore");
+
+showMoreBtn.addEventListener('click', function () {
+    let hotelId = this.getAttribute("hotelId");
+    let commentsContainer = this.closest(".comments");
+    let commentList = commentsContainer.querySelector(".comment-list");
+
+    let displayedCommentCount = commentList.querySelectorAll(".comment").length;
+
+    fetch(`https://localhost:7107/Hotel/ShowMore?hotelId=${hotelId}&skip=${displayedCommentCount}`)
+        .then(response => {
+            if (!response.ok) throw new Error("Failed to fetch");
+            return response.json();
+        })
+        .then(comments => {
+            comments.forEach(comment => {
+                const div = document.createElement("div");
+                div.classList.add("comment");
+                div.innerHTML = `
+                    <div class="author">
+                        <p class="name">${comment.authorName}</p>
+                        <p class="date">${comment.created}</p>
+                    </div>
+                    <div class="rating">
+                        <div class="rate">
+                            <span>${(comment.rate % 1 === 0) ? comment.rate.toFixed(0) : comment.rate.toFixed(1)}</span>
+                            <span>/</span>
+                            <span>5</span>
+                        </div>
+                        <p class="content">${comment.message}</p>
+                    </div>
+                `;
+                commentList.appendChild(div); // ?? append new comments at the end
+            });
+
+            // Optional: Hide button if no more comments
+            if (comments.length === 0) {
+                showMoreBtn.style.display = "none";
+            }
+        })
+        .catch(err => console.error("Fetch error:", err));
+});

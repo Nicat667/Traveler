@@ -3,6 +3,7 @@ using Repository.Repositories.Interfaces;
 using Service.Helpers.Responses;
 using Service.Services.Interfaces;
 using Service.ViewModels;
+using Service.ViewModels.Comments;
 using Service.ViewModels.Hotel;
 using System;
 using System.Collections.Generic;
@@ -76,7 +77,7 @@ namespace Service.Services
                 StarCount = data.StarCount,
                 Address = data.Address,
                 Images = data.HotelImages.Where(m => m.HotelId == id),
-                Comments = data.Comments.Where(m => m.HotelId == id),
+                Comments = data.Comments.Where(m => m.HotelId == id).Take(3),
                 Rate = data.Comments.Any(c => c.HotelId == data.Id) ? data.Comments.Where(c => c.HotelId == data.Id).Sum(c => c.Rate) / (decimal)data.Comments.Count(c => c.HotelId == data.Id) : 5,
                 Restaurant = data.Restaurant,
                 AirConditioning = data.AirConditioning,
@@ -164,5 +165,7 @@ namespace Service.Services
                 Rate = m.Comments.Any(c => c.HotelId == m.Id) ? m.Comments.Where(c => c.HotelId == m.Id).Sum(c => c.Rate) / (decimal)m.Comments.Count(c => c.HotelId == m.Id) : 5
             });
         }
+
+        
     }
 }
