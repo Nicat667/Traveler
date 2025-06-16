@@ -327,6 +327,7 @@ let showMoreBtn = document.querySelector(".showMore");
 
 showMoreBtn.addEventListener('click', function () {
     let hotelId = this.getAttribute("hotelId");
+    let totalComment = parseInt(this.getAttribute("totalcount"));
     let commentsContainer = this.closest(".comments");
     let commentList = commentsContainer.querySelector(".comment-list");
 
@@ -355,11 +356,11 @@ showMoreBtn.addEventListener('click', function () {
                         <p class="content">${comment.message}</p>
                     </div>
                 `;
-                commentList.appendChild(div); // ?? append new comments at the end
+                commentList.appendChild(div);
             });
-
-            // Optional: Hide button if no more comments
-            if (comments.length === 0) {
+            debugger
+            let updatedCount = commentList.querySelectorAll(".comment").length;
+            if (updatedCount >= totalComment) {
                 showMoreBtn.style.display = "none";
             }
         })
