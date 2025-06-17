@@ -68,11 +68,22 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <a asp-controller="Account" asp-action="Login">
-                                <div class="circle">
-                                    <i class="fa-regular fa-user"></i>
-                                </div>
-                            </a>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Login">
+                                    <div class="circle">
+                                        <i class="fa-regular fa-user" style="color:black"></i>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="" style="pointer-events: none;">
+                                    <div class="circle">
+                                        <i class="fa-regular fa-user" style="color:black"></i>
+                                    </div>
+                                </a>
+                            }
                         </div>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -137,27 +148,27 @@
                     <div class="form-group">
                         <input class="form-control mt-4" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="Username" asp-for="@Model.UserName">
-                       @*  <span asp-validation-for="@Model.UserName" class="text-danger"></span> *@
+     
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control mt-4" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="Full Name" asp-for="@Model.FullName">
-                       @*  <span asp-validation-for="@Model.FullName" class="text-danger"></span> *@
+      
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control mt-4" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="Email" asp-for="@Model.Email">
-                        @* <span asp-validation-for="@Model.Email" class="text-danger"></span> *@
+    
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control pass-register mt-3" id="password"
                                placeholder="Password" asp-for="@Model.Password">
-                        @* <span asp-validation-for="@Model.Password" class="text-danger"></span> *@
+                  
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control pass-register-conf mt-3"
                                id="confirmPassword" placeholder="Confirm password" asp-for="@Model.ConfirmPAssword">
-                        @* <span asp-validation-for="@Model.ConfirmPAssword" class="text-danger"></span> *@
+             
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
                     <div class="visible-register d-none">

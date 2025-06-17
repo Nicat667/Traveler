@@ -14,11 +14,13 @@ namespace Travel.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM request)
@@ -46,14 +48,43 @@ namespace Travel.Controllers
             await _signInManager.SignInAsync(user, false);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-        public async Task<IActionResult> ForgetPassWord()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM request)
         {
-            return View();
+            if(!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            var user = await _userManager.FindByEmailAsync(request.EmailOrUsername);
+            if(user == null)
+            {
+                user = await _userManager.FindByNameAsync(request.EmailOrUsername);
+            }
+            if(user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Email or Password is wrong!");
+                return View(request);
+            }
+
+            var result = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (!result)
+            {
+                ModelState.AddModelError(string.Empty, "Email or Password is wrong!");
+                return View(request);
+            }
+            await _signInManager.SignInAsync(user, false);
+            return RedirectToAction("Index", "Home");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOut()

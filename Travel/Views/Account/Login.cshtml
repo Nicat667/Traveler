@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LoginVM
+@{
     ViewData["Title"] = "Login";
 }
 @inject ISettingService _settingService
@@ -67,11 +68,22 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <a asp-controller="Account" asp-action="Login">
-                                <div class="circle">
-                                    <i class="fa-regular fa-user"></i>
-                                </div>
-                            </a>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Login">
+                                    <div class="circle">
+                                        <i class="fa-regular fa-user" style="color:black"></i>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="" style="pointer-events: none;">
+                                    <div class="circle">
+                                        <i class="fa-regular fa-user" style="color:black"></i>
+                                    </div>
+                                </a>
+                            }
                         </div>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -130,14 +142,15 @@
             <div class="contain signin">
                 <p>Sign in to your account</p>
 
-                <form method="get" action="">
+                <form method="post" asp-controller="Account" asp-action="Login">
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Enter email or username">
+                        <input type="text" class="form-control mt-4" id="InputEmail"
+                               aria-describedby="emailHelp" placeholder="Enter email or username" asp-for="@Model.EmailOrUsername">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control pass mt-3" id="exampleInputPassword1"
-                               placeholder="Password">
+                        <input type="password" class="form-control pass mt-3" id="password"
+                               placeholder="Password" asp-for="@Model.Password">
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mt-3">Log in</button>
                     <div class="visible d-none">
@@ -146,10 +159,29 @@
                     <div class="invis ">
                         <i class="fa-solid fa-eye-slash"></i>
                     </div>
+                    
                 </form>
                 <div class="forget">
                     <a asp-controller="Account" asp-action="ForgetPassword">Forgot password?</a>
                 </div>
+                <script>
+                    function adjustIconPositions() {
+                        const passwordInput = document.getElementById("password");
+
+                        if (!passwordInput) return;
+
+                        const passwordTop = passwordInput.offsetTop;
+
+                        const visibleIcon = document.querySelector(".visible");
+                        const invisIcon = document.querySelector(".invis");
+
+                        if (visibleIcon) visibleIcon.style.top = (passwordTop + 10) + "px";
+                        if (invisIcon) invisIcon.style.top = (passwordTop + 10) + "px";
+                    }
+
+                    window.addEventListener("load", adjustIconPositions);
+                    window.addEventListener("resize", adjustIconPositions);
+                </script>
             </div>
 
 
