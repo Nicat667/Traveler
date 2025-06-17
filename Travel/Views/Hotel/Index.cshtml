@@ -50,6 +50,9 @@
                             <li>
                                 <a asp-controller="FAQ" asp-action="Index">FAQ</a>
                             </li>
+                            <li>
+                                <a href="#">Admin</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -71,6 +74,15 @@
                                 </div>
                             </a>
                         </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="login-info">
+                                <span style="color:white">@User.Identity.Name</span>
+                                <form method="post" asp-controller="Account" asp-action="LogOut">
+                                    <button type="submit" class=" btn btn-primary ">Log out</button>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

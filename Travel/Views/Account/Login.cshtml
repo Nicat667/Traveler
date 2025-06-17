@@ -21,7 +21,7 @@
                         <div class="logo">
                             <a asp-controller="Home" asp-action="Index">
                                 <picture>
-                                    <source media="(max-width: 990px)" srcset="./assets/images/home/blackLogo.svg">
+                                    <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
                                     <img class="logo" src="~/assets/images/home/@datas["logo"]"
                                          alt="Traveler Logo">
                                 </picture>
@@ -49,6 +49,9 @@
                             <li>
                                 <a asp-controller="FAQ" asp-action="Index">FAQ</a>
                             </li>
+                            <li>
+                                <a href="#">Admin</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -64,10 +67,21 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <div class="circle">
-                                <i class="fa-regular fa-user"></i>
-                            </div>
+                            <a asp-controller="Account" asp-action="Login">
+                                <div class="circle">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                            </a>
                         </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="login-info">
+                                <span style="color:white">@User.Identity.Name</span>
+                                <form method="post" asp-controller="Account" asp-action="LogOut">
+                                    <button type="submit" class=" btn btn-primary ">Log out</button>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -116,7 +130,7 @@
             <div class="contain signin">
                 <p>Sign in to your account</p>
 
-                <form method="post" action="">
+                <form method="get" action="">
                     <div class="form-group">
                         <input type="text" class="form-control mt-4" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="Enter email or username">

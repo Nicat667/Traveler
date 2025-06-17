@@ -1,4 +1,4 @@
-﻿
+﻿@model RegisterVM
 @{
     ViewData["Title"] = "Register";
 }
@@ -22,7 +22,7 @@
                         <div class="logo">
                             <a asp-controller="Home" asp-action="Index">
                                 <picture>
-                                    <source media="(max-width: 990px)" srcset="./assets/images/home/blackLogo.svg">
+                                    <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
                                     <img class="logo" src="~/assets/images/home/@datas["logo"]"
                                          alt="Traveler Logo">
                                 </picture>
@@ -50,6 +50,9 @@
                             <li>
                                 <a asp-controller="FAQ" asp-action="Index">FAQ</a>
                             </li>
+                            <li>
+                                <a href="#">Admin</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -65,10 +68,21 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <div class="circle">
-                                <i class="fa-regular fa-user"></i>
-                            </div>
+                            <a asp-controller="Account" asp-action="Login">
+                                <div class="circle">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                            </a>
                         </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="login-info">
+                                <span style="color:white">@User.Identity.Name</span>
+                                <form method="post" asp-controller="Account" asp-action="LogOut">
+                                    <button type="submit" class=" btn btn-primary ">Log out</button>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -118,26 +132,32 @@
             <div class="contain signup">
                 <p>Create an account</p>
 
-                <form method="post" action="" class="register">
+                <form method="post" asp-controller="Account" asp-action="Register" class="register">
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Username">
+                        <input class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Username" asp-for="@Model.UserName">
+                       @*  <span asp-validation-for="@Model.UserName" class="text-danger"></span> *@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Full Name">
+                               aria-describedby="emailHelp" placeholder="Full Name" asp-for="@Model.FullName">
+                       @*  <span asp-validation-for="@Model.FullName" class="text-danger"></span> *@
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Email">
+                               aria-describedby="emailHelp" placeholder="Email" asp-for="@Model.Email">
+                        @* <span asp-validation-for="@Model.Email" class="text-danger"></span> *@
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control pass-register mt-3" id="exampleInputPassword1"
-                               placeholder="Password">
+                        <input type="password" class="form-control pass-register mt-3" id="password"
+                               placeholder="Password" asp-for="@Model.Password">
+                        @* <span asp-validation-for="@Model.Password" class="text-danger"></span> *@
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control pass-register-conf mt-3"
-                               id="exampleInputPassword1" placeholder="Confirm password">
+                               id="confirmPassword" placeholder="Confirm password" asp-for="@Model.ConfirmPAssword">
+                        @* <span asp-validation-for="@Model.ConfirmPAssword" class="text-danger"></span> *@
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
                     <div class="visible-register d-none">
@@ -154,30 +174,26 @@
                     </div>
                 </form>
             </div>
+            <script>
+                function adjustIconPositions() {
+                    const passwordInput = document.getElementById("password");
+                    const confirmInput = document.getElementById("confirmPassword");
 
+                    const passwordTop = passwordInput.offsetTop;
+                    const confirmTop = confirmInput.offsetTop;
+
+                    document.querySelector(".visible-register").style.top = (passwordTop + 10) + "px";
+                    document.querySelector(".invis-register").style.top = (passwordTop + 10) + "px";
+
+                    document.querySelector(".visible-register2").style.top = (confirmTop + 10) + "px";
+                    document.querySelector(".invis-register2").style.top = (confirmTop + 10) + "px";
+                }
+
+             
+                window.addEventListener("load", adjustIconPositions);
+                window.addEventListener("resize", adjustIconPositions);
+            </script>
         </div>
-        <!-- <div class="forgetpass d-none">
-            <div class="contain">
-                <div class="head">
-                    <p>Reset Password</p>
-                </div>
-                <div class="mid">
-                    <p>
-                        Enter the e-mail address associated with the account. <br>
-                        We'll e-mail a link to reset your password. </p>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" placeholder="Email">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Send Reset Link</button>
-                </form>
-                <div class="end">
-                    <span class="backTo">Back to Log in</span>
-                </div>
-            </div>
-        </div> -->
     </section>
 
     <div class="move-up">
