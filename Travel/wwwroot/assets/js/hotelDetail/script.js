@@ -358,7 +358,6 @@ showMoreBtn.addEventListener('click', function () {
                 `;
                 commentList.appendChild(div);
             });
-            debugger
             let updatedCount = commentList.querySelectorAll(".comment").length;
             if (updatedCount >= totalComment) {
                 showMoreBtn.style.display = "none";

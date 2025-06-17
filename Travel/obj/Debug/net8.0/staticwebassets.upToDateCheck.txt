@@ -1,6 +1,9 @@
 wwwroot\assets\css\About\style.css
 wwwroot\assets\css\About\style.css.map
 wwwroot\assets\css\About\style.scss
+wwwroot\assets\css\Account\style.css
+wwwroot\assets\css\Account\style.css.map
+wwwroot\assets\css\Account\style.scss
 wwwroot\assets\css\Blog\style.css
 wwwroot\assets\css\Blog\style.css.map
 wwwroot\assets\css\Blog\style.scss
@@ -123,6 +126,7 @@ wwwroot\assets\images\rooms\Taj-Dubai-2.jpg
 wwwroot\assets\images\rooms\Taj-Dubai-3.jpg
 wwwroot\assets\images\rooms\Taj-Dubai-4.jpg
 wwwroot\assets\js\about\script.js
+wwwroot\assets\js\account\script.js
 wwwroot\assets\js\blog\script.js
 wwwroot\assets\js\contact\script.js
 wwwroot\assets\js\faq\script.js

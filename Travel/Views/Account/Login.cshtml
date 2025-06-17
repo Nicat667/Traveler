@@ -1,17 +1,16 @@
-﻿@model IEnumerable<FAQVM>
-@{
-    ViewData["Title"] = "FAQ";
+﻿@{
+    ViewData["Title"] = "Login";
 }
 @inject ISettingService _settingService
 @{
     var datas = await _settingService.GetSettings();
 }
 @section css {
-    <link rel="stylesheet" href="~/assets/css/FAQ/style.css?v=@DateTime.Now.Ticks">
+    <link rel="stylesheet" href="~/assets/css/Account/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css" rel="stylesheet" />
 }
 <main>
-    <section id="nav"
-             style="background-image: url('assets/images/home/banner-search-form-min.png'); background-size: cover;">
+    <section id="nav" style="background-image: url('@Url.Content("~/assets/images/home/banner-search-form-min.png")'); background-size: cover;">
         <div class="navbar">
             <div class="cus-container">
                 <div class="row align-items-center line">
@@ -22,8 +21,9 @@
                         <div class="logo">
                             <a asp-controller="Home" asp-action="Index">
                                 <picture>
-                                    <source media="(max-width: 990px)" srcset="~/assets/images/home/blackLogo.svg">
-                                    <img class="logo" src="~/assets/images/home/@datas["logo"]">
+                                    <source media="(max-width: 990px)" srcset="./assets/images/home/blackLogo.svg">
+                                    <img class="logo" src="~/assets/images/home/@datas["logo"]"
+                                         alt="Traveler Logo">
                                 </picture>
                             </a>
                         </div>
@@ -64,11 +64,9 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <a asp-controller="Account" asp-action="Login">
-                                <div class="circle">
-                                    <i class="fa-regular fa-user"></i>
-                                </div>
-                            </a>
+                            <div class="circle">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +75,7 @@
         <div class="controller-name">
             <span class="home">Home</span>
             <span class="icon"><i class="fa-solid fa-circle"></i></span>
-            <span class="name">FAQ</span>
+            <span class="name">Login</span>
         </div>
         <div class="currency-tab d-none">
             <ul>
@@ -104,6 +102,44 @@
                 </ul>
             </div>
         </div>
+        <div class="login">
+            <div class="uper">
+                <ul>
+                    <li>
+                        <p class="in active">Log in</p>
+                    </li>
+                    <li>
+                        <a asp-controller="Account" asp-action="Register" style="text-decoration:none"><p class="up">Register</p></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="contain signin">
+                <p>Sign in to your account</p>
+
+                <form method="post" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Enter email or username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control pass mt-3" id="exampleInputPassword1"
+                               placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Log in</button>
+                    <div class="visible d-none">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="invis ">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                </form>
+                <div class="forget">
+                    <a asp-controller="Account" asp-action="ForgetPassword">Forgot password?</a>
+                </div>
+            </div>
+
+
+        </div>
 
     </section>
 
@@ -111,61 +147,9 @@
         <i class="fa-solid fa-angle-up"></i>
     </div>
 
-    <section id="questions">
-        <div class="cus-container">
-            <p>Frequently asked questions</p>
-            <div class="row">
-                <div class="col-md-12 ">
-                    <div class="faq-container">
-                        @{
-                            foreach(var item in Model)
-                            {
-                                <div class="item">
-                                    <p>@item.Question</p>
-                                    <i class="fa-solid fa-plus"></i>
-                                    <div class="content">
-                                        <span>
-                                            @item.Answer
-                                        </span>
-                                    </div>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
 
-
-            </div>
-        </div>
-    </section>
-
-    <section id="subscribtion">
-        <div class="cus-container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 left"
-                     style="background-image: url('assets/images/home/subscribtion_Image.webp'); background-size: cover;">
-                </div>
-                <div class="col-lg-6 col-md-6 right">
-                    <div class="contain">
-                        <div class="head">
-                            <h1>Get special offers, and more from Traveler</h2>
-                        </div>
-                        <div class="mid">
-                            <p>Subscribe to see secret deals prices drop the moment you sign up!</p>
-                        </div>
-                        <div class="end">
-                            <form>
-                                <input type="email" class="mt-4" id="exampleInputEmail1"
-                                       aria-describedby="emailHelp" placeholder="Email Address">
-                                <button type="submit" class="btn btn-primary submit">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 @section js {
-    <script src="~/assets/js/faq/script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGEyKiDCVY0ACQfUFlNGsvlW9QJF-JCmc&map_ids=b559224a8cff171a769dc502&libraries=marker&callback=initMap" async defer></script>
+    <script src="~/assets/js/account/script.js"></script>
 }

@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="profile">
-                            <a href="#">
+                            <a asp-controller="Account" asp-action="Login">
                                 <div class="circle">
                                     <i class="fa-regular fa-user"></i>
                                 </div>
@@ -98,106 +98,7 @@
                 </ul>
             </div>
         </div>
-        <div class="login d-none" style="z-index: 10000">
-            <div class="uper">
-                <span><i class="fa-solid fa-xmark"></i></span>
-                <ul>
-                    <li>
-                        <p class="in active">Log in</p>
-                    </li>
-                    <li>
-                        <p class="up">Register</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="contain signin">
-                <p>Sign in to your account</p>
-
-                <form method="post" action="">
-                    <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Enter email or username">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control pass mt-3" id="exampleInputPassword1"
-                               placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Log in</button>
-                    <div class="visible d-none">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
-                    <div class="invis ">
-                        <i class="fa-solid fa-eye-slash"></i>
-                    </div>
-                </form>
-                <div class="forget">
-                    <a href="#">Forgot password?</a>
-                </div>
-            </div>
-            <div class="contain signup d-none">
-                <p>Create an account</p>
-
-                <form method="post" action="" class="register">
-                    <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Full Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control pass-register mt-3" id="exampleInputPassword1"
-                               placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control pass-register-conf mt-3"
-                               id="exampleInputPassword1" placeholder="Confirm password">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
-                    <div class="visible-register d-none">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
-                    <div class="invis-register">
-                        <i class="fa-solid fa-eye-slash"></i>
-                    </div>
-                    <div class="visible-register2 d-none">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
-                    <div class="invis-register2">
-                        <i class="fa-solid fa-eye-slash"></i>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <div class="forgetpass d-none">
-            <div class="contain">
-                <div class="head">
-                    <p>Reset Password</p>
-                </div>
-                <div class="mid">
-                    <p>
-                        Enter the e-mail address associated with the account. <br>
-                        We'll e-mail a link to reset your password.
-                    </p>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control mt-4" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Email">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Send Reset Link</button>
-                </form>
-                <div class="end">
-                    <span class="backTo">Back to Log in</span>
-                </div>
-            </div>
-        </div>
+        
         <div class="custom-container">
             <div class="headline">
                 <h1>Let the journey begin</h1>
@@ -418,6 +319,6 @@
         </div>
     </section>
 </main>
-@section js {
+@* @section js {
     <script src="~/assets/js/home/script.js"></script>
-}
+} *@
