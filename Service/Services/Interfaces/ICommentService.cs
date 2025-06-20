@@ -1,5 +1,4 @@
-﻿
-using Service.ViewModels.Comments;
+﻿using Service.ViewModels.Comments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +11,6 @@ namespace Service.Services.Interfaces
     {
         Task AddComment(CommentVM comment);
         Task<IEnumerable<CommentVM>> ShowMore(int hotelId, int skip);
+        Task<IEnumerable<CommentAdminVM>> GetAll();
     }
 }

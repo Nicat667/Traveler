@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interfaces;
 using System;
@@ -14,7 +15,12 @@ namespace Repository.Repositories
         private readonly AppDbContext _context;
         public CommentRepository(AppDbContext context) : base(context)
         {
+            _context = context;
+        }
 
+        public async Task<IEnumerable<Comment>> GetAllWithHotels()
+        {
+            return await _context.Comments.Include(m => m.Hotel).ToListAsync();
         }
     }
 }

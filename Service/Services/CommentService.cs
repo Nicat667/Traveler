@@ -29,6 +29,20 @@ namespace Service.Services
                 Created = DateTime.Now,
             });
         }
+
+        public async Task<IEnumerable<CommentAdminVM>> GetAll()
+        {
+            var datas = await _commentRepository.GetAllWithHotels();
+            return datas.Select(x => new CommentAdminVM
+            {
+                AuthorName = x.AuthorName,
+                Rate = x.Rate,
+                Message = x.Message,
+                Created = x.Created,
+                Hotel = x.Hotel.Name,
+            });
+        }
+
         public async Task<IEnumerable<CommentVM>> ShowMore(int hotelId, int skip)
         {
             var comments = await _commentRepository.GetAllAsync();
