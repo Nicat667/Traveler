@@ -24,6 +24,7 @@ namespace Service
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<IAccountService, AccountService>();
             return services;
         }
     }

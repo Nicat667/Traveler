@@ -50,9 +50,12 @@
                             <li>
                                 <a asp-controller="FAQ" asp-action="Index">FAQ</a>
                             </li>
-                            <li>
-                                <a href="#">Admin</a>
-                            </li>
+                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li>
+                                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Admin</a>
+                                </li>
+                            }
                         </ul>
                     </div>
 
@@ -161,12 +164,12 @@
     
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control pass-register mt-3" id="password"
+                        <input type="password" autocomplete="off" class="form-control pass-register mt-3" id="password"
                                placeholder="Password" asp-for="@Model.Password">
                   
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control pass-register-conf mt-3"
+                        <input type="password" autocomplete="off" class="form-control pass-register-conf mt-3"
                                id="confirmPassword" placeholder="Confirm password" asp-for="@Model.ConfirmPAssword">
              
                     </div>

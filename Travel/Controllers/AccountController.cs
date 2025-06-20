@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.Enums;
+using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Service.ViewModels.Account;
@@ -45,7 +46,7 @@ namespace Travel.Controllers
                 }
                 return View(request);
             }
-            await _signInManager.SignInAsync(user, false);
+            await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
             return RedirectToAction("Index", "Home");
         }
 
