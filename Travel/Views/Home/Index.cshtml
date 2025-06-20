@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/assets/css/Home/style.css">
 }
 <main>
+    
     <section id="nav" style="background-image: url('assets/images/home/bannermix-min.webp'); background-size: cover; height: 502px">
         <div class="navbar">
             <div class="cus-container">
@@ -346,5 +347,17 @@
     </section>
 </main>
 @section js {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/assets/js/home/script.js"></script>
+    @if (TempData["RegistrationSuccess"]?.ToString() == "true")
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Check your email!',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        </script>
+    }
 }

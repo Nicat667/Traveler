@@ -5,6 +5,7 @@ using Repository;
 using Repository.Data;
 using Serilog;
 using Service;
+using Service.Helpers;
 using Travel.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,9 +27,9 @@ var conString = builder.Configuration.GetConnectionString("DefaultDb") ??
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(conString));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>()
-                                                                                                                  .AddDefaultTokenProviders();
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection("smtp"));
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -40,6 +41,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 
+    options.SignIn.RequireConfirmedEmail = true;
     // Lockout settings.
     //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     //options.Lockout.MaxFailedAccessAttempts = 5;
@@ -62,7 +64,7 @@ builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
-app.UseExceptionHandler();
+//app.UseExceptionHandler(); ////////////////////////////////////////////////////////////////////
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -71,8 +73,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-
 
 
 

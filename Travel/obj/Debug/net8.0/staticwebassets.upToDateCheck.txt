@@ -541,3 +541,4 @@ wwwroot\assets\js\home\script.js
 wwwroot\assets\js\hotelDetail\script.js
 wwwroot\assets\js\Hotels\script.js
 wwwroot\assets\js\roomDetail\script.js
+wwwroot\templates\Emailpage.html
