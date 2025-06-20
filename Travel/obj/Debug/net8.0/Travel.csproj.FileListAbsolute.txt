@@ -282,3 +282,7 @@ C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\MailKit.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\MimeKit.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Azure.Storage.Common.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\System.IO.Hashing.dll

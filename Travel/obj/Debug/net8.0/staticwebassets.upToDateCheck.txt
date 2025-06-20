@@ -336,6 +336,7 @@ wwwroot\admin\assets\js\elements\ac-rangeslider.js
 wwwroot\admin\assets\js\elements\ac-slider.js
 wwwroot\admin\assets\js\elements\ac-tour.js
 wwwroot\admin\assets\js\elements\ac-treeview.js
+wwwroot\admin\assets\js\faq.js
 wwwroot\admin\assets\js\forms\form-masking-custom.js
 wwwroot\admin\assets\js\forms\form-validation.js
 wwwroot\admin\assets\js\forms\page-croper.js
