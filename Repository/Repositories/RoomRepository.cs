@@ -25,7 +25,7 @@ namespace Repository.Repositories
 
         public async Task<IEnumerable<Room>> GetAllRoomsWithReservationAndHotel()
         {
-            return await _context.Rooms.Include(m=>m.Reservations).ToListAsync();
+            return await _context.Rooms.Include(m=>m.Reservations).Include(m=>m.Hotel).ToListAsync();
         }
 
         public async Task<Room> GetRoomById(int id)

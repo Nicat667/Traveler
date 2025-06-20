@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using Repository.Repositories.Interfaces;
 using Service.Helpers.Responses;
 using Service.Services.Interfaces;
@@ -10,21 +11,23 @@ namespace Service.Services
     {
         private readonly IRoomRepository _roomRepository;
         private readonly IReservationService _reservationService;
-        public RoomService(IRoomRepository roomRepository, IReservationService reservationService)
+        private readonly IEmailService _emailService;
+        private readonly UserManager<AppUser> _userManager;
+        public RoomService(IRoomRepository roomRepository, IReservationService reservationService, IEmailService emailService, UserManager<AppUser> userManager)
         {
             _roomRepository = roomRepository;
             _reservationService = reservationService;
+            _emailService = emailService;
+            _userManager = userManager;
         }
 
         public async Task<bool> BookRoom(BookVM model)
         {
             var rooms = await _roomRepository.GetAllRoomsWithReservationAndHotel();
 
-            // Get the room the user clicked (e.g., the room option shown on UI)
             var requestedRoom = rooms.FirstOrDefault(m => m.Id == model.RoomId);
             if (requestedRoom == null) return false;
 
-            // Match room group by same hotel, type, bed count, guest capacity
             var sameGroupRooms = rooms
                 .Where(m =>
                     m.HotelId == model.HotelId &&
@@ -33,13 +36,11 @@ namespace Service.Services
                     m.GuestCapacity == requestedRoom.GuestCapacity)
                 .ToList();
 
-            // Filter rooms that are available in the requested date range
             List<Room> availableRooms = sameGroupRooms
                 .Where(room => !room.Reservations.Any(r =>
                     r.StartDate < model.EndDate && model.StartDate < r.EndDate))
                 .ToList();
 
-            // Check if enough rooms are available
             if (availableRooms.Count >= model.RoomCount)
             {
                 foreach (var room in availableRooms.Take(model.RoomCount))
@@ -52,6 +53,21 @@ namespace Service.Services
                         AppUserId = model.UserId,
                     });
                 }
+
+
+
+                var user = await _userManager.FindByIdAsync(model.UserId);
+                string html = string.Empty;
+                using (StreamReader sr = new StreamReader("wwwroot/templates/EmailpageForReservation.html"))
+                {
+                    html = sr.ReadToEnd();
+                }
+                html = html.Replace("{fullname}", user.FullName);
+                html = html.Replace("{type}", requestedRoom.Type.ToString());
+                html = html.Replace("{hotel}", requestedRoom.Hotel.Name);
+                html = html.Replace("{count}", model.RoomCount.ToString());
+                html = html.Replace("{time}", DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+                _emailService.Send(user.Email, "Notification", html);
 
                 return true;
             }

@@ -12,6 +12,7 @@ namespace Travel.Controllers
         private readonly IRoomService _roomService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        
         public RoomController(IRoomService roomService, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _roomService = roomService;
@@ -47,6 +48,8 @@ namespace Travel.Controllers
                 TempData["BookingError"] = "Not enough rooms available or time range is already booked..";
                 return RedirectToAction("Detail", new { id = model.RoomId });
             }
+
+            
             TempData["BookingSuccess"] = true;
             return RedirectToAction("Detail", new { id = model.RoomId });
         }
