@@ -347,17 +347,21 @@
                         <div class="price">
                             <p>$ @Model.Price / night</p>
                         </div>
-                        <form>
+                        <form method="post" asp-controller="Room" asp-action="Book">
+                            @if (TempData["BookingError"] != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @TempData["BookingError"]
+                                </div>
+                            }
                             <div class="row g-3 align-items-end">
                                 <div class="col-md-6">
                                     <label for="startDate" class="form-label">Check in</label>
-                                    <input type="date" class="form-control inp" id="startDate" name="startDate"
-                                           required>
+                                    <input type="date" class="form-control inp" id="startDate" name="StartDate" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="endDate" class="form-label">Check out</label>
-                                    <input type="date" class="form-control inp" id="endDate" name="endDate"
-                                           required>
+                                    <input type="date" class="form-control inp" id="endDate" name="EndDate" required>
                                 </div>
                             </div>
                             <div class="cus-container2">
@@ -365,7 +369,7 @@
                                     <div class="number-input2">
                                         <span>Rooms</span>
                                         <button type="button" class="decrement2">−</button>
-                                        <input type="number" min="1" max="100" step="1" value="1" />
+                                        <input type="number" min="1" max="100" step="1" value="1" name="RoomCount" />
                                         <button type="button" class="increment2">+</button>
                                     </div>
                                 </div>
@@ -375,6 +379,8 @@
                                 <span>Total:</span>
                                 <span class="sum">$ 0.00</span>
                             </div>
+                            <input type="hidden" name="RoomId" value="@Model.Id" />
+                            <input type="hidden" name="HotelId" value="@Model.HotelId" />
                             <button type="submit" class="btn btn-primary mt-3 w-100 but">Book</button>
                         </form>
                     </div>
@@ -382,12 +388,30 @@
             </div>
         </div>
     </section>
-
+    
     <div class="move-up">
         <i class="fa-solid fa-angle-up"></i>
     </div>
 
 </main>
 @section js {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (TempData["BookingSuccess"] != null)
+    {
+        <script>
+              Swal.fire({
+              title: "Success!",
+              icon: "success",
+              draggable: true
+            });
+        </script>
+    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("startDate").setAttribute("min", today);
+            document.getElementById("endDate").setAttribute("min", today);
+        });
+    </script>
     <script src="~/assets/js/roomDetail/script.js"></script>
 }

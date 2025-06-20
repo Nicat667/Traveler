@@ -1,21 +1,66 @@
-﻿using Repository.Repositories.Interfaces;
+﻿using Domain.Models;
+using Repository.Repositories.Interfaces;
+using Service.Helpers.Responses;
 using Service.Services.Interfaces;
 using Service.ViewModels.Room;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Services
 {
     public class RoomService : IRoomService
     {
         private readonly IRoomRepository _roomRepository;
-        public RoomService(IRoomRepository roomRepository)
+        private readonly IReservationService _reservationService;
+        public RoomService(IRoomRepository roomRepository, IReservationService reservationService)
         {
             _roomRepository = roomRepository;
+            _reservationService = reservationService;
         }
+
+        public async Task<bool> BookRoom(BookVM model)
+        {
+            var rooms = await _roomRepository.GetAllRoomsWithReservationAndHotel();
+
+            // Get the room the user clicked (e.g., the room option shown on UI)
+            var requestedRoom = rooms.FirstOrDefault(m => m.Id == model.RoomId);
+            if (requestedRoom == null) return false;
+
+            // Match room group by same hotel, type, bed count, guest capacity
+            var sameGroupRooms = rooms
+                .Where(m =>
+                    m.HotelId == model.HotelId &&
+                    m.Type == requestedRoom.Type &&
+                    m.BedCount == requestedRoom.BedCount &&
+                    m.GuestCapacity == requestedRoom.GuestCapacity)
+                .ToList();
+
+            // Filter rooms that are available in the requested date range
+            List<Room> availableRooms = sameGroupRooms
+                .Where(room => !room.Reservations.Any(r =>
+                    r.StartDate < model.EndDate && model.StartDate < r.EndDate))
+                .ToList();
+
+            // Check if enough rooms are available
+            if (availableRooms.Count >= model.RoomCount)
+            {
+                foreach (var room in availableRooms.Take(model.RoomCount))
+                {
+                    await _reservationService.AddRoomToReservation(new Reservation
+                    {
+                        RoomId = room.Id,
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate,
+                        AppUserId = model.UserId,
+                    });
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+
+
         public async Task<IEnumerable<RoomVM>> GetAllRooms()
         {
             var datas = await _roomRepository.GetAllRooms();

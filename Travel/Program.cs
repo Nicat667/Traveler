@@ -27,8 +27,9 @@ var conString = builder.Configuration.GetConnectionString("DefaultDb") ??
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(conString));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection("smtp"));
 
 builder.Services.Configure<IdentityOptions>(options =>

@@ -22,6 +22,7 @@ namespace Repository
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<ISettingRepository, SettingRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
             return services;
         }
     }
