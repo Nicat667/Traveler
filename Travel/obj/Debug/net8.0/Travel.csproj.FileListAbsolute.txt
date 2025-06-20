@@ -268,3 +268,12 @@ C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\runtimes\win\lib\net7.
 C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\Users\Nicat\Desktop\MVC\Travel\Travel\bin\Debug\net8.0\Serilog.Sinks.File.dll

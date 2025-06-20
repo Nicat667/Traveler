@@ -75,6 +75,15 @@ namespace Repository.Data
                 .HasForeignKey(res => res.RoomId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<Room>()
+                .Property(r => r.Price)
+                .HasPrecision(18, 2);
+
+            builder.Entity<Room>()
+                .Property(r => r.Area)
+                .HasPrecision(10, 2); 
+
+
             builder.Entity<Reservation>()
                 .HasOne(res => res.AppUser)
                 .WithMany(u => u.Reservations)

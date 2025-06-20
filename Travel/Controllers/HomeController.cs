@@ -10,10 +10,12 @@ namespace Travel.Controllers
     {
         private readonly ICityService _cityService;
         private readonly IBlogService _blogService;
-        public HomeController(ICityService cityService, IBlogService blogService)
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(ICityService cityService, IBlogService blogService, ILogger<HomeController> logger)
         {
             _cityService = cityService;
             _blogService = blogService;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -23,7 +25,7 @@ namespace Travel.Controllers
                 Cities = await _cityService.GetAllWihHotelsAsync(),
                 Blogs = await _blogService.GetAllWithCategories(),
             };
-            
+            _logger.LogInformation("Visited Home Page at {Time}", DateTime.Now);
             return View(homeVM);
         }
 

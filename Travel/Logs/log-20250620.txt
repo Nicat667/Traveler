@@ -1,0 +1,5 @@
+[2025-06-20 11:04:18 WRN] No store type was specified for the decimal property 'Area' on entity type 'Room'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-06-20 11:04:18 WRN] No store type was specified for the decimal property 'Price' on entity type 'Room'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-06-20 11:04:19 INF] Visited Home Page at "2025-06-20T11:04:19.4785908+04:00"
+[2025-06-20 11:09:18 INF] Visited Home Page at "2025-06-20T11:09:18.4607019+04:00"
+[2025-06-20 11:12:14 INF] Visited Home Page at "2025-06-20T11:12:14.1306517+04:00"
