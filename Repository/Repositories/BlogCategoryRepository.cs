@@ -18,6 +18,11 @@ namespace Repository.Repositories
             _context = context;
         }
 
+        public async Task<BlogCategory> GetById(int id)
+        {
+            return await _context.BlogCategories.Include(m => m.Blogs).FirstOrDefaultAsync(m => m.Id == id);
+        }
+
         public async Task<IEnumerable<BlogCategory>> GetCategories()
         {
             return await _context.BlogCategories.Include(m => m.Blogs).ToListAsync();

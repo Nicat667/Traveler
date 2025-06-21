@@ -45,8 +45,11 @@ namespace Service.Services
         public async Task Edit(int id, EditVM model)
         {
             var data = await _fAQRepository.GetByIdAsync(id);
-            data.Answer = model.Answer; 
-            data.Question = model.Question;
+            if(data != null)
+            {
+                data.Answer = model.Answer;
+                data.Question = model.Question;
+            }
             await _fAQRepository.UpdateAsync(data);
         }
 
