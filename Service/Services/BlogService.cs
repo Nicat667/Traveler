@@ -17,16 +17,6 @@ namespace Service.Services
             _blogRepository = blogRepository;
         }
 
-        public async Task<IEnumerable<BlogCategoryVM>> GetAllBlogCategories()
-        {
-            var datas = await _blogRepository.GetCategories();
-            return datas.Select(m => new BlogCategoryVM
-            {
-                Name = m.Name,
-                Id = m.Id,
-                Count = m.Blogs.Count,
-            });
-        }
 
         public async Task<IEnumerable<BlogDetailVM>> GetAllBlogsWithCategoriesAndImages()
         {

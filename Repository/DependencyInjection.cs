@@ -23,6 +23,7 @@ namespace Repository
             services.AddScoped<IStaffRepository, StaffRepository>();
             services.AddScoped<ISettingRepository, SettingRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<IBlogCategoryRepository, BlogCategoryRepository>();
             return services;
         }
     }

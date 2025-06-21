@@ -15,24 +15,34 @@ namespace Service.Services
             _container = new BlobContainerClient(conn, containerName);
             _container.CreateIfNotExists();
         }
-        public Task<bool> DeleteAsync(string blobName)
+        public async Task<string> UploadAsync(IFormFile file, string fileName = null)
         {
-            throw new NotImplementedException();
+            if (file == null || file.Length == 0)
+                return null;
+
+            fileName ??= Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+            var blob = _container.GetBlobClient(fileName);
+            await using var stream = file.OpenReadStream();
+            await blob.UploadAsync(stream, overwrite: true);
+
+            return fileName;
         }
 
-        public Task<string> GetBlobUrlAsync(string blobName)
+        public async Task<string> GetBlobUrlAsync(string blobName)
         {
-            throw new NotImplementedException();
+            return _container.GetBlobClient(blobName).Uri.ToString();
         }
 
-        public Task<string> ReplaceAsync(string oldBlobName, IFormFile newFile)
+        public async Task<bool> DeleteAsync(string blobName)
         {
-            throw new NotImplementedException();
+            return await _container.GetBlobClient(blobName).DeleteIfExistsAsync();
         }
 
-        public Task<string> UploadAsync(IFormFile file, string fileName = null)
+        public async Task<string> ReplaceAsync(string oldBlobName, IFormFile newFile)
         {
-            throw new NotImplementedException();
+            await DeleteAsync(oldBlobName);
+            return await UploadAsync(newFile);
         }
     }
 }

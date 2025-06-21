@@ -5,25 +5,22 @@ using Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class BlogRepository : BaseRepository<Blog>, IBlogRepository
+    public class BlogCategoryRepository : BaseRepository<BlogCategory>, IBlogCategoryRepository
     {
         private readonly AppDbContext _context;
-        public BlogRepository(AppDbContext context) : base(context)
+        public BlogCategoryRepository(AppDbContext context) : base(context)
         {
             _context = context;
         }
 
-
-        public async Task<IEnumerable<Blog>> GetAllWithCategories()
+        public async Task<IEnumerable<BlogCategory>> GetCategories()
         {
-            return await _context.Blogs.Include(m => m.BlogCategory).ToListAsync();
+            return await _context.BlogCategories.Include(m => m.Blogs).ToListAsync();
         }
-
     }
 }
